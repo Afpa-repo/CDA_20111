@@ -1,0 +1,32 @@
+{% extends  'base.html.twig' %}
+
+{% block title 'Nos Points Retrait'%}
+
+{% block body %}
+    <div class="container mt-2">
+        <h1>Nos Points Retrait</h1>
+        <div class="row flex">
+            {% for pointretrait in allPR %}
+                <div class="col-3 m-1">
+                    <div class="card p-2">
+                        <div class=""card-body>
+                            <h5 class="card-title text-center">
+                                <a href="{{ path('pointretrait.show', {id : pointretrait.id, slug : pointretrait.slug}) }}">{{ pointretrait.nom }}</a>
+                            </h5>
+                            <p class="card-text text-justify">{{ pointretrait.description }}</p>
+                            <div class="card-text text-info text-center">
+                                <p class="m-0">{{ pointretrait.adresse }}</p>
+                                <p>{{ pointretrait.cp }} {{ pointretrait.ville }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
