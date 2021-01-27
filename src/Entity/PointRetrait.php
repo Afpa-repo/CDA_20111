@@ -56,6 +56,7 @@ class PointRetrait
     private $ville;
 
     /**
+     * @Assert\Regex("/^[a-zA-Z\-éèêàâïìîòôù0-9\/\+\@\s]{150}/")
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
