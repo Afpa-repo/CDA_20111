@@ -25,11 +25,6 @@ class PointRetraitType extends AbstractType
             ->add('cp', null, ['label'=>'Code Postal', 'required'=>true])
             ->add('ville', null, ['label'=>'Ville', 'required'=>true])
             ->add('description', TextareaType::class, ['label'=>'Description'])
-            ->add('image',FileType::class, [
-                'label'=>'Image',
-                'help'=>'Seules les photos au format JPG, JPEG ou PNG seront acceptées. 500Ko max.',
-                'required'=>false
-            ])
             ->add('ouverture',ChoiceType::class, [
                 'choices'=> $this->getChoices(PointRetrait::HORAIRES),
                 'label'=> 'de',
@@ -45,6 +40,30 @@ class PointRetraitType extends AbstractType
                 'label'=>'Le',
                 'required'=>true])
             ->add('email',EmailType::class, ['label'=>'Email', 'required'=>true])
+            ->add('image',FileType::class, [
+                'label'=>'Image',
+                'help'=>'Seules les photos au format JPG, JPEG ou PNG seront acceptées. 500Ko max.',
+                // unmapped means that this field is not associated to any entity property
+                'mapped' => false,
+
+                // make it optional so you don't have to re-upload the PDF file
+                // every time you edit the Product details
+                'required' => false,
+
+                // unmapped fields can't define their validation using annotations
+                // in the associated entity, so you can use the PHP constraint classes
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'application/jpeg',
+                            'application/jpg',
+                            'application/png',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez téléverser une image (JPG, JPEG ou PNG)',
+                    ])
+                ],
+            ])
         ;
     }
 
@@ -55,7 +74,7 @@ class PointRetraitType extends AbstractType
         ]);
     }
 
-    private function getChoices(array $choices)
+    private function getChoices(array $choices): array
     {
         $output = [];
         foreach($choices as $k=>$v):

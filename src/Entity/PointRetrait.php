@@ -174,10 +174,10 @@ class PointRetrait
 
     public function getOuverture(): ?string
     {
-        return $this->ouverture;
+        return self::HORAIRES[$this->ouverture];
     }
 
-    public function setOuverture(string $ouverture): self
+    public function setOuverture(int $ouverture): self
     {
         $this->ouverture = $ouverture;
 
@@ -186,10 +186,10 @@ class PointRetrait
 
     public function getFermeture(): ?string
     {
-        return $this->fermeture;
+        return self::HORAIRES[$this->fermeture];
     }
 
-    public function setFermeture(string $fermeture): self
+    public function setFermeture(int $fermeture): self
     {
         $this->fermeture = $fermeture;
 
@@ -198,10 +198,10 @@ class PointRetrait
 
     public function getJour(): ?string
     {
-        return $this->jour;
+        return self::JOURS[$this->jour];
     }
 
-    public function setJour(string $jour): self
+    public function setJour(int $jour): self
     {
         $this->jour = $jour;
 
