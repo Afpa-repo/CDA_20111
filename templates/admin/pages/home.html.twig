@@ -1,7 +1,9 @@
 {% extends  'base.html.twig' %}
 {% block body %}
-    <div class="jumbotron text-center">
-        <h1>Kouizine</h1>
-        <p>un marché de produits locaux, des cours de cuisine et des recettes pour les plus gourmands...</p>
+    <div class="container mt-4">
+        <h1>Gestion du site Kouizine</h1>
+        <p>Que souhaitez-vous gérer?</p>
+        <a href="#" title="Gérer les fournisseurs" class="btn btn-primary">Fournisseurs</a>
+        <a href="{{path('pointretrait.index')}}" title="Gérer les points retrait" class="btn btn-primary">Points Retrait</a>
     </div>
 {% endblock %}
