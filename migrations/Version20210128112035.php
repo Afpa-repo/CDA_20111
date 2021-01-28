@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210128111139 extends AbstractMigration
+final class Version20210128112035 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -53,7 +53,7 @@ final class Version20210128111139 extends AbstractMigration
         $this->addSql('ALTER TABLE ligne_commande RENAME INDEX idx_3170b74b82ea2e54 TO commande_id');
         $this->addSql('ALTER TABLE livrer RENAME INDEX idx_e576b73267c663e7 TO pr_id');
         $this->addSql('ALTER TABLE membre CHANGE pr_id pr_id INT NOT NULL');
-        $this->addSql('ALTER TABLE pointretrait CHANGE ouverture ouverture SMALLINT DEFAULT 0, CHANGE fermeture fermeture SMALLINT DEFAULT 0 NOT NULL, CHANGE jour jour SMALLINT DEFAULT 0 NOT NULL');
+        $this->addSql('ALTER TABLE PointRetrait CHANGE ouverture ouverture SMALLINT DEFAULT 0, CHANGE fermeture fermeture SMALLINT DEFAULT 0 NOT NULL, CHANGE jour jour SMALLINT DEFAULT 0 NOT NULL');
         $this->addSql('ALTER TABLE produit CHANGE four_id four_id INT NOT NULL, CHANGE tp_id tp_id INT NOT NULL');
         $this->addSql('ALTER TABLE produit_favori RENAME INDEX idx_18d769f66a99f74a TO membre_id');
         $this->addSql('ALTER TABLE recette CHANGE cat_id cat_id INT NOT NULL, CHANGE auteur auteur INT NOT NULL');
