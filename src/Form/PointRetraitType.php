@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 
 class PointRetraitType extends AbstractType
 {
@@ -53,12 +54,12 @@ class PointRetraitType extends AbstractType
                 // unmapped fields can't define their validation using annotations
                 // in the associated entity, so you can use the PHP constraint classes
                 'constraints' => [
-                    new File([
+                    new Image([
                         'maxSize' => '1024k',
                         'mimeTypes' => [
-                            'application/jpeg',
-                            'application/jpg',
-                            'application/png',
+                            'image/jpeg',
+                            'image/jpg',
+                            'image/png',
                         ],
                         'mimeTypesMessage' => 'Veuillez téléverser une image (JPG, JPEG ou PNG)',
                     ])
