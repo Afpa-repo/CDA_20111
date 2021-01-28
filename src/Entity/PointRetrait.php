@@ -80,7 +80,7 @@ class PointRetrait
     private $fermeture;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="integer", length=100)
      * jour d'ouverture du point retrait
      */
     private $jour;
