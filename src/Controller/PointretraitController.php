@@ -1,23 +1,23 @@
 <?php
 namespace App\Controller;
-use App\Entity\PointRetrait;
-use App\Repository\PointRetraitRepository;
+use App\Entity\Pointretrait;
+use App\Repository\PointretraitRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use \Symfony\Component\HttpFoundation\Response;
 use \Symfony\Component\Routing\Annotation\Route;
 
 
-class PointRetraitController extends AbstractController
+class PointretraitController extends AbstractController
 {
 
     /**
-     * @var PointRetraitRepository
+     * @var PointretraitRepository
      */
     private $repository;
 
     /**
-     * @param PointRetraitRepository
+     * @param PointretraitRepository
      * @param EntityManagerInterface
      */
     private $em;
@@ -41,11 +41,11 @@ class PointRetraitController extends AbstractController
 
     /**
      * @Route("/pointretrait/{slug}-{id}", name = "pointretrait.show", requirements = {"slug": "[a-z0-9\-]*"})
-     * @param PointRetrait $pr
+     * @param Pointretrait $pr
      * @param string $slug
      * @return Response
      */
-    public function show(PointRetrait $pr, string $slug): Response
+    public function show(Pointretrait $pr, string $slug): Response
     {
         if($pr->getSlug() !== $slug) {
             return $this->redirectToRoute('pointretrait.show', [

@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\PointRetrait;
+use App\Entity\Pointretrait;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -12,7 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
 
-class PointRetraitType extends AbstractType
+class PointretraitType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -27,17 +27,17 @@ class PointRetraitType extends AbstractType
             ->add('ville', null, ['label'=>'Ville', 'required'=>true])
             ->add('description', TextareaType::class, ['label'=>'Description'])
             ->add('ouverture',ChoiceType::class, [
-                'choices'=> $this->getChoices(PointRetrait::HORAIRES),
+                'choices'=> $this->getChoices(Pointretrait::HORAIRES),
                 'label'=> 'de',
                 'required'=>true
             ])
             ->add('fermeture',ChoiceType::class,[
-                'choices'=> $this->getChoices(PointRetrait::HORAIRES),
+                'choices'=> $this->getChoices(Pointretrait::HORAIRES),
                 'label'=> 'à',
                 'required'=>true
             ])
             ->add('jour',ChoiceType::class, [
-                'choices'=>$this->getChoices(PointRetrait::JOURS),
+                'choices'=>$this->getChoices(Pointretrait::JOURS),
                 'label'=>'Le',
                 'required'=>true])
             ->add('email',EmailType::class, ['label'=>'Email', 'required'=>true])
@@ -71,7 +71,7 @@ class PointRetraitType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => PointRetrait::class,
+            'data_class' => Pointretrait::class,
         ]);
     }
 

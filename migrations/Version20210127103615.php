@@ -47,8 +47,8 @@ final class Version20210127103615 extends AbstractMigration
         $this->addSql('ALTER TABLE commentaires ADD CONSTRAINT FK_D9BEC0C489312FE9 FOREIGN KEY (recette_id) REFERENCES recette (id)');
         $this->addSql('ALTER TABLE fournisseur ADD CONSTRAINT FK_369ECA32EF7EB489 FOREIGN KEY (comm_id) REFERENCES commercial (id)');
         $this->addSql('ALTER TABLE livrer ADD CONSTRAINT FK_E576B732E5AC00A4 FOREIGN KEY (four_id) REFERENCES fournisseur (id)');
-        $this->addSql('ALTER TABLE livrer ADD CONSTRAINT FK_E576B73267C663E7 FOREIGN KEY (pr_id) REFERENCES PointRetrait (id)');
-        $this->addSql('ALTER TABLE membre ADD CONSTRAINT FK_F6B4FB2967C663E7 FOREIGN KEY (pr_id) REFERENCES PointRetrait (id)');
+        $this->addSql('ALTER TABLE livrer ADD CONSTRAINT FK_E576B73267C663E7 FOREIGN KEY (pr_id) REFERENCES pointretrait (id)');
+        $this->addSql('ALTER TABLE membre ADD CONSTRAINT FK_F6B4FB2967C663E7 FOREIGN KEY (pr_id) REFERENCES pointretrait (id)');
         $this->addSql('ALTER TABLE produit ADD CONSTRAINT FK_29A5EC27E5AC00A4 FOREIGN KEY (four_id) REFERENCES fournisseur (id)');
         $this->addSql('ALTER TABLE produit ADD CONSTRAINT FK_29A5EC27384F0DAC FOREIGN KEY (tp_id) REFERENCES type_produit (id)');
         $this->addSql('ALTER TABLE ingredient ADD CONSTRAINT FK_6BAF7870F347EFB FOREIGN KEY (produit_id) REFERENCES produit (id)');
@@ -93,7 +93,7 @@ final class Version20210127103615 extends AbstractMigration
         $this->addSql('ALTER TABLE stream DROP FOREIGN KEY FK_F0E9BE1C25F432AD');
         $this->addSql('ALTER TABLE recette DROP FOREIGN KEY FK_49BB639059027487');
         $this->addSql('ALTER TABLE produit DROP FOREIGN KEY FK_29A5EC27384F0DAC');
-        $this->addSql('DROP TABLE PointRetrait');
+        $this->addSql('DROP TABLE pointretrait');
         $this->addSql('DROP TABLE categorie');
         $this->addSql('DROP TABLE cb');
         $this->addSql('DROP TABLE commande');

@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\PointRetrait;
+use App\Entity\Pointretrait;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method PointRetrait|null find($id, $lockMode = null, $lockVersion = null)
- * @method PointRetrait|null findOneBy(array $criteria, array $orderBy = null)
- * @method PointRetrait[]    findAll()
- * @method PointRetrait[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Pointretrait|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Pointretrait|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Pointretrait[]    findAll()
+ * @method Pointretrait[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PointRetraitRepository extends ServiceEntityRepository
+class PointretraitRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, PointRetrait::class);
+        parent::__construct($registry, Pointretrait::class);
     }
 
     // /**
-    //  * @return PointRetrait[] Returns an array of PointRetrait objects
+    //  * @return Pointretrait[] Returns an array of Pointretrait objects
     //  */
 
     public function findAllOrdered($orderedBy, $orderType = 'ASC')
@@ -35,7 +35,7 @@ class PointRetraitRepository extends ServiceEntityRepository
 
 
     // /**
-    //  * @return PointRetrait[] Returns an array of PointRetrait objects
+    //  * @return Pointretrait[] Returns an array of Pointretrait objects
     //  */
     /*
     public function findByExampleField($value)
@@ -52,7 +52,7 @@ class PointRetraitRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?PointRetrait
+    public function findOneBySomeField($value): ?Pointretrait
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

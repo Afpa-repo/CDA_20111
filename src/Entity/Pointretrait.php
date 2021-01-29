@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\PointRetraitRepository;
+use App\Repository\PointretraitRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\PointRetraitRepository", repositoryClass=PointRetraitRepository::class)
  * @UniqueEntity("nom")
  */
-class PointRetrait
+class Pointretrait
 {
     /**
      * @ORM\Id
@@ -68,20 +68,20 @@ class PointRetrait
     private $image;
 
     /**
-     * @ORM\Column(type="string", length=5)
-     * heure d'ouverture du point retrait
+     * @ORM\Column(type="integer")
+     * heure d'ouverture du point retrait (voir const HORAIRES[])
      */
     private $ouverture;
 
     /**
-     * @ORM\Column(type="string", length=5)
-     * heure de fermeture du point retrait
+     * @ORM\Column(type="integer")
+     * heure de fermeture du point retrait (voir const HORAIRES[])
      */
     private $fermeture;
 
     /**
-     * @ORM\Column(type="integer", length=100)
-     * jour d'ouverture du point retrait
+     * @ORM\Column(type="integer")
+     * jour d'ouverture du point retrait (voir const JOURS[])
      */
     private $jour;
 
