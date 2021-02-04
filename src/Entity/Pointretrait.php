@@ -7,21 +7,17 @@ use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PointRetraitRepository", repositoryClass=PointRetraitRepository::class)
- * @UniqueEntity("nom")
+ * Pointretrait
+ * @ORM\Entity(repositoryClass="App\Repository\PointretraitRepository", repositoryClass=PointretraitRepository::class)
+ * @ORM\Table(name="pointretrait")
+ * @UniqueEntity("nom") //ceci définit le champs "nom" comme unique dans la base de données. Les erreurs de doublons seront ainsi traitées
  */
 class Pointretrait
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
     const HORAIRES = [
         0 => "08:00", 1 => "08:30", 2 => "09:00", 3 => "09:30", 4 => "10:00",
         5 => "10:30", 6 => "11:00", 7 => "11:30", 8 => "12:00", 9 => "12:30",
@@ -32,63 +28,115 @@ class Pointretrait
     const JOURS = ['Lundi','Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 
     /**
-     * @Assert\Length(min=5, max=255)
-     * @ORM\Column(type="string", length=150)
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=150, nullable=false)
+     * @Assert\Length(min=5, max=150)
      */
     private $nom;
 
     /**
-     * @Assert\Length(min=5, max=255)
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="adresse1", type="string", length=150, nullable=false)
+     * @Assert\Length(min=5, max=150)
      */
-    private $adresse;
+    private $adresse1;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="adresse2", type="string", length=150, nullable=true)
+     * @Assert\Length(max=150)
+     */
+    private $adresse2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cp", type="string", length=5, nullable=false)
+     * @Assert\Length(min=5, max=5)
      * @Assert\Regex("/^[0-9]{5}/")
-     * @ORM\Column(type="string", length=5)
      */
     private $cp;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=150, nullable=false)
+     * @Assert\Length(min=3, max=150)
      * @Assert\Regex("/^[a-zA-Z\-éèêàâïìîòôù0-9\s]{150}/")
-     * @ORM\Column(type="string", length=150)
      */
     private $ville;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="descr", type="text", length=65535, nullable=true)
      * @Assert\Regex("/^[a-zA-Z\-éèêàâïìîòôù0-9\/\+\@\s]{150}/")
-     * @ORM\Column(type="text", nullable=true)
+     * @Assert\Length(max=65535)
      */
-    private $description;
+    private $descr;
 
     /**
-     * @ORM\Column(type="string", length=5, nullable=true)
-     * extension de l'image facultative du point retrait
+     * @var string|null
+     *
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+     * @Assert\Regex("/^([a-zA-Z0-9]{1,250})(\.jpg|\.jpeg|\.png)/")
      */
-    private $image;
+    private $photo;
 
     /**
-     * @ORM\Column(type="integer")
      * heure d'ouverture du point retrait (voir const HORAIRES[])
+     * @var int
+     * @ORM\Column(name="ouverture", type="integer", nullable=false)
      */
     private $ouverture;
 
     /**
-     * @ORM\Column(type="integer")
      * heure de fermeture du point retrait (voir const HORAIRES[])
+     * @var int
+     * @ORM\Column(name="fermeture", type="integer", nullable=false)
      */
     private $fermeture;
 
     /**
-     * @ORM\Column(type="integer")
      * jour d'ouverture du point retrait (voir const JOURS[])
+     * @var int
+     * @ORM\Column(name="jour", type="integer", nullable=false)
      */
     private $jour;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var int
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
     private $email;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Fournisseur", mappedBy="pr")
+     */
+    private $four;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->four = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -112,14 +160,26 @@ class Pointretrait
         return (new Slugify())->slugify($this->nom);
     }
 
-    public function getAdresse(): ?string
+    public function getAdresse1(): ?string
     {
-        return $this->adresse;
+        return $this->adresse1;
     }
 
-    public function setAdresse(string $adresse): self
+    public function setAdresse1(string $adresse1): self
     {
-        $this->adresse = $adresse;
+        $this->adresse1 = $adresse1;
+
+        return $this;
+    }
+
+    public function getAdresse2(): ?string
+    {
+        return $this->adresse2;
+    }
+
+    public function setAdresse2(?string $adresse2): self
+    {
+        $this->adresse2 = $adresse2;
 
         return $this;
     }
@@ -148,26 +208,26 @@ class Pointretrait
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDescr(): ?string
     {
-        return $this->description;
+        return $this->descr;
     }
 
-    public function setDescription(?string $description): self
+    public function setDescr(?string $descr): self
     {
-        $this->description = $description;
+        $this->descr = $descr;
 
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getPhoto(): ?string
     {
-        return $this->image;
+        return $this->photo;
     }
 
-    public function setImage(?string $image): self
+    public function setPhoto(?string $photo): self
     {
-        $this->image = $image;
+        $this->photo = $photo;
 
         return $this;
     }
@@ -219,4 +279,32 @@ class Pointretrait
 
         return $this;
     }
+
+    /**
+     * @return Collection|Fournisseur[]
+     */
+    public function getFour(): Collection
+    {
+        return $this->four;
+    }
+
+    public function addFour(Fournisseur $four): self
+    {
+        if (!$this->four->contains($four)) {
+            $this->four[] = $four;
+            $four->addPr($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFour(Fournisseur $four): self
+    {
+        if ($this->four->removeElement($four)) {
+            $four->removePr($this);
+        }
+
+        return $this;
+    }
+
 }

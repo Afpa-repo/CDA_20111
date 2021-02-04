@@ -5,12 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\FournisseurRepository;
 
 /**
  * Fournisseur
- *
+ * @ORM\Entity(repositoryClass="App\Repository\FournisseurRepository", repositoryClass=FournisseurRepository::class)
  * @ORM\Table(name="fournisseur", indexes={@ORM\Index(name="comm_id", columns={"comm_id"})})
- * @ORM\Entity
  */
 class Fournisseur
 {
@@ -26,16 +26,23 @@ class Fournisseur
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=150, nullable=false)
      */
     private $nom;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="adresse", type="string", length=150, nullable=true)
+     * @ORM\Column(name="adresse1", type="string", length=200, nullable=true)
      */
-    private $adresse;
+    private $adresse1;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="adresse2", type="string", length=200, nullable=true)
+     */
+    private $adresse2;
 
     /**
      * @var string
@@ -61,14 +68,14 @@ class Fournisseur
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=100, nullable=false)
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
     private $email;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="photo", type="string", length=4, nullable=true)
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
      */
     private $photo;
 
@@ -129,14 +136,26 @@ class Fournisseur
         return $this;
     }
 
-    public function getAdresse(): ?string
+    public function getAdresse1(): ?string
     {
-        return $this->adresse;
+        return $this->adresse1;
     }
 
-    public function setAdresse(?string $adresse): self
+    public function setAdresse1(?string $adresse1): self
     {
-        $this->adresse = $adresse;
+        $this->adresse1 = $adresse1;
+
+        return $this;
+    }
+
+    public function getAdresse2(): ?string
+    {
+        return $this->adresse2;
+    }
+
+    public function setAdresse2(?string $adresse2): self
+    {
+        $this->adresse2 = $adresse2;
 
         return $this;
     }

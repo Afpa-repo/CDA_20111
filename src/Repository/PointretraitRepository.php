@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Repository;
 
 use App\Entity\Pointretrait;
@@ -12,6 +11,9 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Pointretrait[]    findAll()
  * @method Pointretrait[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
+
+
 class PointretraitRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -29,7 +31,7 @@ class PointretraitRepository extends ServiceEntityRepository
             ->orderBy('pr.'.$orderedBy, $orderType)
             ->getQuery()
             ->getResult()
-        ;
+            ;
     }
 
 

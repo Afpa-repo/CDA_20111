@@ -3,12 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CategorieRepository;
 
 /**
  * Categorie
- *
+ * @ORM\Entity(repositoryClass="App\Repository\CategorieRepository", repositoryClass=CategorieRepository::class)
  * @ORM\Table(name="categorie")
- * @ORM\Entity
  */
 class Categorie
 {
@@ -24,7 +24,7 @@ class Categorie
     /**
      * @var string|null
      *
-     * @ORM\Column(name="nom", type="string", length=50, nullable=true)
+     * @ORM\Column(name="nom", type="string", length=150, nullable=true)
      */
     private $nom;
 

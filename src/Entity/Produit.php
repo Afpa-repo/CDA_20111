@@ -2,15 +2,16 @@
 
 namespace App\Entity;
 
+use Cocur\Slugify\Slugify;
+use App\Repository\ProduitRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Produit
- *
+ * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository", repositoryClass=ProduitRepository::class)
  * @ORM\Table(name="produit", uniqueConstraints={@ORM\UniqueConstraint(name="ref", columns={"ref"})}, indexes={@ORM\Index(name="four_id", columns={"four_id"}), @ORM\Index(name="tp_id", columns={"tp_id"})})
- * @ORM\Entity
  */
 class Produit
 {
@@ -26,7 +27,7 @@ class Produit
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=150, nullable=false)
      */
     private $nom;
 
@@ -52,9 +53,23 @@ class Produit
     private $prix;
 
     /**
-     * @var int|null
+     * @var int
      *
-     * @ORM\Column(name="saison", type="integer", nullable=true)
+     * @ORM\Column(name="nbUniteMesure", type="integer", nullable=false)
+     */
+    private $nbunitemesure;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="uniteMesure", type="string", length=20, nullable=false)
+     */
+    private $unitemesure;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="saison", type="boolean", nullable=true)
      */
     private $saison;
 
@@ -68,19 +83,9 @@ class Produit
     /**
      * @var string
      *
-     * @ORM\Column(name="photo", type="string", length=4, nullable=false)
+     * @ORM\Column(name="photo", type="string", length=255, nullable=false)
      */
     private $photo;
-
-    /**
-     * @var \Fournisseur
-     *
-     * @ORM\ManyToOne(targetEntity="Fournisseur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="four_id", referencedColumnName="id")
-     * })
-     */
-    private $four;
 
     /**
      * @var \TypeProduit
@@ -91,6 +96,16 @@ class Produit
      * })
      */
     private $tp;
+
+    /**
+     * @var \Fournisseur
+     *
+     * @ORM\ManyToOne(targetEntity="Fournisseur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="four_id", referencedColumnName="id")
+     * })
+     */
+    private $four;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -164,6 +179,11 @@ class Produit
         return $this;
     }
 
+    public function getSlug(): string
+    {
+        return (new Slugify())->slugify($this->nom);
+    }
+
     public function getRef(): ?string
     {
         return $this->ref;
@@ -200,12 +220,36 @@ class Produit
         return $this;
     }
 
-    public function getSaison(): ?int
+    public function getNbunitemesure(): ?int
+    {
+        return $this->nbunitemesure;
+    }
+
+    public function setNbunitemesure(int $nbunitemesure): self
+    {
+        $this->nbunitemesure = $nbunitemesure;
+
+        return $this;
+    }
+
+    public function getUnitemesure(): ?string
+    {
+        return $this->unitemesure;
+    }
+
+    public function setUnitemesure(string $unitemesure): self
+    {
+        $this->unitemesure = $unitemesure;
+
+        return $this;
+    }
+
+    public function getSaison(): ?bool
     {
         return $this->saison;
     }
 
-    public function setSaison(?int $saison): self
+    public function setSaison(?bool $saison): self
     {
         $this->saison = $saison;
 
@@ -236,18 +280,6 @@ class Produit
         return $this;
     }
 
-    public function getFour(): ?Fournisseur
-    {
-        return $this->four;
-    }
-
-    public function setFour(?Fournisseur $four): self
-    {
-        $this->four = $four;
-
-        return $this;
-    }
-
     public function getTp(): ?TypeProduit
     {
         return $this->tp;
@@ -256,6 +288,18 @@ class Produit
     public function setTp(?TypeProduit $tp): self
     {
         $this->tp = $tp;
+
+        return $this;
+    }
+
+    public function getFour(): ?Fournisseur
+    {
+        return $this->four;
+    }
+
+    public function setFour(?Fournisseur $four): self
+    {
+        $this->four = $four;
 
         return $this;
     }

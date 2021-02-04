@@ -3,12 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\StreamRepository;
 
 /**
  * Stream
- *
+ * @ORM\Entity(repositoryClass="App\Repository\StreamRepository", repositoryClass=StreamRepository::class)
  * @ORM\Table(name="stream", indexes={@ORM\Index(name="streamer_id", columns={"streamer_id"})})
- * @ORM\Entity
  */
 class Stream
 {
@@ -31,21 +31,21 @@ class Stream
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=150, nullable=false)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="st_url", type="string", length=200, nullable=false)
+     * @ORM\Column(name="st_url", type="string", length=255, nullable=false)
      */
     private $stUrl;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="descr", type="string", length=300, nullable=true)
+     * @ORM\Column(name="descr", type="text", length=65535, nullable=true)
      */
     private $descr;
 

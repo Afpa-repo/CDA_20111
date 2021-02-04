@@ -1,0 +1,20 @@
+{% extends  'base.html.twig' %}
+{% block title 'Nos Produits'%}
+{% block body %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h1>{{ produit.nom }}</h1>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-5">
+                <img style="width:25rem" src="../../../public/assets/img/produit/{{ produit.photo }}" title="{{ produit.nom }}" alt="{{ produit.nom }} de {{ produit.four }}"></div>
+            <div class="col-7">
+                <p class="text-justify">{{ produit.descr | nl2br }}</p>
+                <p>Référence Produit: {{ produit.ref }}</p>
+                <p>{{ produit.prix }} € / {{ produit.nbUniteMesure }} {{ produit.uniteMesure }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

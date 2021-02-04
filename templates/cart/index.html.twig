@@ -1,0 +1,64 @@
+{% extends  'base.html.twig' %}
+
+{% block title 'Mon Panier'%}
+
+{% block body %}
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-6">
+                <h1>Mon Panier</h1>
+            </div>
+            <div class="col-6  text-right mt-4 mb-2">
+                {% if items|length > 0 %}
+                <a href="{{ path('cart.empty') }}" class="btn btn-sm btn-outline-success" title="Vider le panier">Vider le panier</a>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if items|length > 0 %}
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Produit</th>
+                <th>Référence</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody
+            {% for item in items  %}
+                <tr>
+                    <td>
+                        <img style="max-height:5rem;max-width:10rem" src="./../../public/assets/img/produit/{{ item.produit.photo }}" title="{{ item.produit.nom }}" alt="{{ item.produit.nom }} de {{ item.produit.four }}">
+                    </td>
+                    <td>{{ item.produit.nom }}</td>
+                    <td>{{ item.produit.ref }}</td>
+                    <td>{{ item.produit.prix }} € / {{ item.produit.nbUniteMesure }} {{ item.produit.uniteMesure }}</td>
+                    <td>
+                        <a href="{{ path('cart.remove', {'id': item.produit.id}) }}" title="Réduire la quantié de ce produit" class="btn btn-sm btn-outline-danger"><i class="fas fa-minus"></i></a>
+                        <a href="{{ path('cart.add', {'id': item.produit.id}) }}" title="Augmenter la quantité de ce produit" class="btn btn-sm btn-outline-primary"><i class="fas fa-plus"></i></a>
+                        {{ item.quantite * item.produit.nbUniteMesure }} {{ item.produit.uniteMesure }}</td>
+                    <td>{{ item.produit.prix * item.quantite}} €</td>
+                    <td><a href="{{ path('cart.removeAll', {'id': item.produit.id}) }}" title="Supprimer ce produit du panier" class="btn text-danger"><i class="fa fa-trash"></i></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="4" class="text-right"><a href="#" class="btn btn-success" title="Valider le panier">Valider le panier</a></td>
+                <td class="align-middle text-right">Total:</td>
+                <td class="h3 align-middle">{{ total }} €</td>
+                <td></td>
+            </tr>
+            </tfoot>
+        </table>
+
+
+        {% else %}
+        <p>Votre panier est vide.</p>
+        {% endif %}
+    </div>
+{% endblock %}

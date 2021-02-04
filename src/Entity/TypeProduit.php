@@ -3,12 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TypeProduitRepository;
 
 /**
  * TypeProduit
- *
+ * @ORM\Entity(repositoryClass="App\Repository\TypeProduitRepository", repositoryClass=TypeProduitRepository::class)
  * @ORM\Table(name="type_produit")
- * @ORM\Entity
  */
 class TypeProduit
 {
@@ -31,14 +31,14 @@ class TypeProduit
     /**
      * @var string|null
      *
-     * @ORM\Column(name="descr", type="string", length=200, nullable=true)
+     * @ORM\Column(name="descr", type="text", length=65535, nullable=true)
      */
     private $descr;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="photo", type="string", length=4, nullable=true)
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
      */
     private $photo;
 

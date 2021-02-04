@@ -5,17 +5,21 @@
 {% block body %}
     <div class="container mt-2">
         <h1>Nos Points Retrait</h1>
-        <div class="row flex">
+        <div class="row d-flex align-content-stretch flex-wrap">
             {% for pointretrait in allPR %}
-                <div class="col-3 m-1">
-                    <div class="card p-2">
-                        <div class=""card-body>
+                <div class="col-3 m-0 p-0">
+                    <div class="card p-1 m-1">
+                        <div class="card-body">
                             <h5 class="card-title text-center">
                                 <a href="{{ path('pointretrait.show', {id : pointretrait.id, slug : pointretrait.slug}) }}">{{ pointretrait.nom }}</a>
                             </h5>
-                            <p class="card-text text-justify">{{ pointretrait.description }}</p>
+                            <p class="card-text text-center">
+                                <img src="./../../public/assets/img/pointretrait/{{ pointretrait.photo }}" title="Point Retrait Kouizine: {{ pointretrait.nom }}"
+                                     alt="photo du Point Retrait Kouizine: {{ pointretrait.nom }}" class="img-thumbnail" style="max-height:10rem;max-width:15rem">
+                            </p>
                             <div class="card-text text-info text-center">
-                                <p class="m-0">{{ pointretrait.adresse }}</p>
+                                <p class="m-0">{{ pointretrait.adresse1 }}</p>
+                                <p class="m-0">{{ pointretrait.adresse2 }}</p>
                                 <p>{{ pointretrait.cp }} {{ pointretrait.ville }}</p>
                             </div>
                         </div>

@@ -3,12 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\StreamerRepository;
 
 /**
  * Streamer
- *
+ * @ORM\Entity(repositoryClass="App\Repository\StreamerRepository", repositoryClass=StreamerRepository::class)
  * @ORM\Table(name="streamer", uniqueConstraints={@ORM\UniqueConstraint(name="id", columns={"id"})}, indexes={@ORM\Index(name="membre_id", columns={"membre_id"})})
- * @ORM\Entity
  */
 class Streamer
 {

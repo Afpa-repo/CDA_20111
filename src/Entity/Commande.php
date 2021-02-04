@@ -5,12 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CommandeRepository;
 
 /**
  * Commande
- *
- * @ORM\Table(name="commande", indexes={@ORM\Index(name="membre_id", columns={"membre_id"}), @ORM\Index(name="facture_id", columns={"facture_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\CommandeRepository", repositoryClass=CommandeRepository::class)
+ * @ORM\Table(name="commande", indexes={@ORM\Index(name="facture_id", columns={"facture_id"}), @ORM\Index(name="membre_id", columns={"membre_id"})})
  */
 class Commande
 {
@@ -38,16 +38,6 @@ class Commande
     private $coutTotal;
 
     /**
-     * @var \Facture
-     *
-     * @ORM\ManyToOne(targetEntity="Facture")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="facture_id", referencedColumnName="id")
-     * })
-     */
-    private $facture;
-
-    /**
      * @var \Membre
      *
      * @ORM\ManyToOne(targetEntity="Membre")
@@ -56,6 +46,16 @@ class Commande
      * })
      */
     private $membre;
+
+    /**
+     * @var \Facture
+     *
+     * @ORM\ManyToOne(targetEntity="Facture")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="facture_id", referencedColumnName="id")
+     * })
+     */
+    private $facture;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -101,18 +101,6 @@ class Commande
         return $this;
     }
 
-    public function getFacture(): ?Facture
-    {
-        return $this->facture;
-    }
-
-    public function setFacture(?Facture $facture): self
-    {
-        $this->facture = $facture;
-
-        return $this;
-    }
-
     public function getMembre(): ?Membre
     {
         return $this->membre;
@@ -121,6 +109,18 @@ class Commande
     public function setMembre(?Membre $membre): self
     {
         $this->membre = $membre;
+
+        return $this;
+    }
+
+    public function getFacture(): ?Facture
+    {
+        return $this->facture;
+    }
+
+    public function setFacture(?Facture $facture): self
+    {
+        $this->facture = $facture;
 
         return $this;
     }

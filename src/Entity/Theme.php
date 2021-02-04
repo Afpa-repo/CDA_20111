@@ -3,12 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ThemeRepository;
 
 /**
  * Theme
- *
+ * @ORM\Entity(repositoryClass="App\Repository\ThemeRepository", repositoryClass=ThemeRepository::class)
  * @ORM\Table(name="theme")
- * @ORM\Entity
  */
 class Theme
 {

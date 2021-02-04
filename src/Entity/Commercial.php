@@ -3,12 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CommercialRepository;
 
 /**
  * Commercial
- *
+ * @ORM\Entity(repositoryClass="App\Repository\CommercialRepository", repositoryClass=CommercialRepository::class)
  * @ORM\Table(name="commercial")
- * @ORM\Entity
  */
 class Commercial
 {
@@ -24,14 +24,14 @@ class Commercial
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=150, nullable=false)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=100, nullable=false)
+     * @ORM\Column(name="prenom", type="string", length=150, nullable=false)
      */
     private $prenom;
 
@@ -45,14 +45,14 @@ class Commercial
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=100, nullable=false)
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="mdp", type="string", length=20, nullable=false)
+     * @ORM\Column(name="mdp", type="string", length=255, nullable=false)
      */
     private $mdp;
 

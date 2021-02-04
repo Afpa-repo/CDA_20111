@@ -5,12 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\RecetteRepository;
 
 /**
  * Recette
- *
- * @ORM\Table(name="recette", indexes={@ORM\Index(name="membre_id", columns={"auteur"}), @ORM\Index(name="cat_id", columns={"cat_id"}), @ORM\Index(name="theme_id", columns={"theme_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\RecetteRepository", repositoryClass=RecetteRepository::class)
+ * @ORM\Table(name="recette", indexes={@ORM\Index(name="cat_id", columns={"cat_id"}), @ORM\Index(name="membre_id", columns={"auteur"}), @ORM\Index(name="theme_id", columns={"theme_id"})})
  */
 class Recette
 {
@@ -26,16 +26,16 @@ class Recette
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=50, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=150, nullable=false)
      */
     private $nom;
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="active", type="boolean", nullable=true)
+     * @ORM\Column(name="active", type="boolean", nullable=true, options={"default"="1"})
      */
-    private $active;
+    private $active = true;
 
     /**
      * @var string
@@ -47,7 +47,7 @@ class Recette
     /**
      * @var string|null
      *
-     * @ORM\Column(name="photo", type="string", length=4, nullable=true)
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
      */
     private $photo;
 
@@ -87,21 +87,11 @@ class Recette
     private $portion;
 
     /**
-     * @var int
+     * @var bool
      *
-     * @ORM\Column(name="difficulte", type="integer", nullable=false)
+     * @ORM\Column(name="difficulte", type="boolean", nullable=false)
      */
     private $difficulte;
-
-    /**
-     * @var \Categorie
-     *
-     * @ORM\ManyToOne(targetEntity="Categorie")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="cat_id", referencedColumnName="id")
-     * })
-     */
-    private $cat;
 
     /**
      * @var \Membre
@@ -122,6 +112,16 @@ class Recette
      * })
      */
     private $theme;
+
+    /**
+     * @var \Categorie
+     *
+     * @ORM\ManyToOne(targetEntity="Categorie")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cat_id", referencedColumnName="id")
+     * })
+     */
+    private $cat;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -267,26 +267,14 @@ class Recette
         return $this;
     }
 
-    public function getDifficulte(): ?int
+    public function getDifficulte(): ?bool
     {
         return $this->difficulte;
     }
 
-    public function setDifficulte(int $difficulte): self
+    public function setDifficulte(bool $difficulte): self
     {
         $this->difficulte = $difficulte;
-
-        return $this;
-    }
-
-    public function getCat(): ?Categorie
-    {
-        return $this->cat;
-    }
-
-    public function setCat(?Categorie $cat): self
-    {
-        $this->cat = $cat;
 
         return $this;
     }
@@ -311,6 +299,18 @@ class Recette
     public function setTheme(?Theme $theme): self
     {
         $this->theme = $theme;
+
+        return $this;
+    }
+
+    public function getCat(): ?Categorie
+    {
+        return $this->cat;
+    }
+
+    public function setCat(?Categorie $cat): self
+    {
+        $this->cat = $cat;
 
         return $this;
     }

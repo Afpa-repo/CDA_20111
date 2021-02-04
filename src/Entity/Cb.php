@@ -3,12 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CbRepository;
 
 /**
  * Cb
- *
+ * @ORM\Entity(repositoryClass="App\Repository\CbRepository", repositoryClass=CbRepository::class)
  * @ORM\Table(name="cb", indexes={@ORM\Index(name="membre_id", columns={"membre_id"})})
- * @ORM\Entity
  */
 class Cb
 {
@@ -38,7 +38,7 @@ class Cb
     /**
      * @var string
      *
-     * @ORM\Column(name="numero", type="string", length=50, nullable=false)
+     * @ORM\Column(name="numero", type="string", length=255, nullable=false)
      */
     private $numero;
 

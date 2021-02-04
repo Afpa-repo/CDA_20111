@@ -2,15 +2,16 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MembreRepository;
 
 /**
  * Membre
- *
+ * @ORM\Entity(repositoryClass="App\Repository\MembreRepository", repositoryClass=MembreRepository::class)
  * @ORM\Table(name="membre", indexes={@ORM\Index(name="pr_id", columns={"pr_id"})})
- * @ORM\Entity
  */
 class Membre
 {
@@ -47,9 +48,16 @@ class Membre
     /**
      * @var string|null
      *
-     * @ORM\Column(name="adresse", type="string", length=150, nullable=true)
+     * @ORM\Column(name="adresse1", type="string", length=200, nullable=true)
      */
-    private $adresse;
+    private $adresse1;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="adresse2", type="string", length=200, nullable=true)
+     */
+    private $adresse2;
 
     /**
      * @var string|null
@@ -59,9 +67,9 @@ class Membre
     private $cp;
 
     /**
-     * @var string|null
+     * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=50, nullable=true)
+     * @ORM\Column(name="ville", type="string", length=150, nullable=false)
      */
     private $ville;
 
@@ -75,16 +83,16 @@ class Membre
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=100, nullable=false)
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
     private $email;
 
     /**
-     * @var bool
+     * @var bool|null
      *
-     * @ORM\Column(name="bloque", type="boolean", nullable=false)
+     * @ORM\Column(name="bloque", type="boolean", nullable=true)
      */
-    private $bloque;
+    private $bloque = '0';
 
     /**
      * @var string|null
@@ -96,21 +104,21 @@ class Membre
     /**
      * @var string|null
      *
-     * @ORM\Column(name="photo", type="string", length=4, nullable=true)
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
      */
     private $photo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="mdp", type="string", length=100, nullable=false)
+     * @ORM\Column(name="mdp", type="string", length=255, nullable=false)
      */
     private $mdp;
 
     /**
-     * @var int|null
+     * @var bool|null
      *
-     * @ORM\Column(name="niveau", type="integer", nullable=true)
+     * @ORM\Column(name="niveau", type="boolean", nullable=true)
      */
     private $niveau;
 
@@ -131,7 +139,7 @@ class Membre
     /**
      * @var string|null
      *
-     * @ORM\Column(name="descr", type="string", length=300, nullable=true)
+     * @ORM\Column(name="descr", type="text", length=65535, nullable=true)
      */
     private $descr;
 
@@ -166,6 +174,7 @@ class Membre
     {
         $this->recette = new \Doctrine\Common\Collections\ArrayCollection();
         $this->produit = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->inscription = new DateTime("now");
     }
 
     public function getId(): ?int
@@ -209,14 +218,26 @@ class Membre
         return $this;
     }
 
-    public function getAdresse(): ?string
+    public function getAdresse1(): ?string
     {
-        return $this->adresse;
+        return $this->adresse1;
     }
 
-    public function setAdresse(?string $adresse): self
+    public function setAdresse1(?string $adresse1): self
     {
-        $this->adresse = $adresse;
+        $this->adresse1 = $adresse1;
+
+        return $this;
+    }
+
+    public function getAdresse2(): ?string
+    {
+        return $this->adresse2;
+    }
+
+    public function setAdresse2(?string $adresse2): self
+    {
+        $this->adresse2 = $adresse2;
 
         return $this;
     }
@@ -238,7 +259,7 @@ class Membre
         return $this->ville;
     }
 
-    public function setVille(?string $ville): self
+    public function setVille(string $ville): self
     {
         $this->ville = $ville;
 
@@ -274,7 +295,7 @@ class Membre
         return $this->bloque;
     }
 
-    public function setBloque(bool $bloque): self
+    public function setBloque(?bool $bloque): self
     {
         $this->bloque = $bloque;
 
@@ -317,12 +338,12 @@ class Membre
         return $this;
     }
 
-    public function getNiveau(): ?int
+    public function getNiveau(): ?bool
     {
         return $this->niveau;
     }
 
-    public function setNiveau(?int $niveau): self
+    public function setNiveau(?bool $niveau): self
     {
         $this->niveau = $niveau;
 

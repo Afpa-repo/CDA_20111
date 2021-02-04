@@ -3,12 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CommentairesRepository;
 
 /**
  * Commentaires
- *
- * @ORM\Table(name="commentaires", indexes={@ORM\Index(name="recette_id", columns={"recette_id"}), @ORM\Index(name="membre_id", columns={"membre_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\CommentairesRepository", repositoryClass=CommentairesRepository::class)
+ * @ORM\Table(name="commentaires", indexes={@ORM\Index(name="membre_id", columns={"membre_id"}), @ORM\Index(name="recette_id", columns={"recette_id"})})
  */
 class Commentaires
 {
