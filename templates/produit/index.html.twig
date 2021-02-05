@@ -14,7 +14,7 @@
                                 <a href="{{ path('produit.show', {id : produit.id, slug : produit.slug}) }}">{{ produit.nom }}</a>
                             </h5>
                             <div class="card-text text-center">
-                                <img style="max-height:10rem;max-width:15rem" src="./../../public/assets/img/produit/{{ produit.photo }}" title="{{ produit.nom }}" alt="{{ produit.nom }} de {{ produit.four }}">
+                                <img style="max-height:10rem;max-width:15rem" src="./public/assets/img/produit/{{ produit.photo }}" title="{{ produit.nom }}" alt="{{ produit.nom }} de {{ produit.four }}">
                             </div>
                             <div class="card-text text-center mt-1">
                                 {{ produit.prix }}€ / {{ produit.nbUniteMesure }} {{ produit.uniteMesure }}

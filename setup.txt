@@ -1,10 +1,14 @@
 1) lancer le server MySQL (assurez-vous qu'il n'y ait pas de base de données nommée fil_rouge sur votre server)
 
-2) lancer le server PHP (symfony server:start)
+2) Taper cette commande dans le terminal Symfony
+
+composer require symfony/web-server-bundle
+
+3) lancer le server PHP (symfony server:start)
 
 puis tapez ces commandes php dans le terminal afin de mettre en place le projet:
 
-php bin/console doctrine:databasee:create
+php bin/console doctrine:database:create
 
 php bin/console doctrine:migrations:migrate
 
