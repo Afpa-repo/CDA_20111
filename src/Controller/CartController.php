@@ -53,7 +53,7 @@ class CartController extends AbstractController {
      * @param CartService $cartService
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function removeAll(CartService $cartService): RedirectResponse{
+    public function removeAll(int $id, CartService $cartService): RedirectResponse{
         $cartService->removeAll($id);
         return $this->redirectToRoute("cart.index", ['current_menu' => 'panier']);
     }
