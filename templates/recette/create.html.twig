@@ -1,0 +1,32 @@
+{%  extends 'base.html.twig' %}
+{% form_theme formRecette 'bootstrap_4_layout.html.twig' %}
+{% block title 'Création de Recettes'%}
+
+{% block body %}
+
+    {% if editMode %}
+        <h1>Modification</h1>
+    {% else %}
+        <h1>Création d'une Recette</h1>
+    {% endif %}
+
+    {{ form_start(formRecette) }}
+
+    {{ form_row(formRecette.nom ,{'attr' : {'placeholder': "Nom de la Recette"}})}}
+    {{ form_row(formRecette.descr,{'attr' : {'placeholder': "Contenu de la Recette" }}) }}
+    {{ form_row(formRecette.photo,{'attr' : {'placeholder': "Nom de la photo de la Recette" }}) }}
+    {{ form_row(formRecette.tpsPrep,{'attr' : {'placeholder': "Temps de préparation de la Recette" }}) }}
+    {{ form_row(formRecette.tpsCuisson,{'attr' : {'placeholder': "Temps de cuisson de la Recette" }}) }}
+    {{ form_row(formRecette.portion,{'attr' : {'placeholder': "Portion" }}) }}
+    {{ form_row(formRecette.difficulte,{'attr' : {'placeholder': "Difficulté de la Recette" }}) }}
+
+    <button type="submit" class="btn btn-primary">
+        {% if editMode %}
+            Enregistrer
+        {% else %}
+            Ajouter
+        {% endif %}
+    </button>
+    {{ form_end(formRecette) }}
+
+{% endblock %}
