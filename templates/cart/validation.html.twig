@@ -1,0 +1,98 @@
+{% extends  'base.html.twig' %}
+{% block title 'Validation'%}
+{% block body %}
+    <div class="col-12 row d-flex justify-content-center ">
+    <h1 class="mb-5">Récapitulatif de commande</h1>
+    </div>
+
+    <div class="row">
+    <div class="col-6 ">
+<p class="mb-5">Facturation</p>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>Libellé de l'article</th>
+                <th>Prix</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.produit.nom }} x {{item.quantite}}</td>
+                    <td>{{ item.produit.prix }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <td>Total:</td>
+                <td >{{ total }} €</td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="col-6">
+    <p class="mb-5">Moyens de paiement</p>
+
+        <!--ACCORDION-->
+    <div class="accordion" id="accordionExample">
+        <!--CB-->
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Carte de crédit
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    {{ form_start(formCb) }}
+                    {{ form_row(formCb.nom,{'attr' : {'placeholder': "Nom du titulaire de la carte" }}) }}
+                    {{ form_row(formCb.prenom,{'attr' : {'placeholder': "Prénom du titulaire de la carte" }}) }}
+                    {{ form_row(formCb.numero,{'attr' : {'placeholder': "Numéro de carte" }}) }}
+                    {{ form_row(formCb.date) }}<!--Trouver un meilleur format pour la date mm/yy-->
+                    <button type="submit" class="btn btn-success">Valider</button>
+                    {{ form_end(formCb) }}
+
+                </div>
+            </div>
+        </div>
+        <!--PAYPAL-->
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Paypal
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <a href="#"><button class="btn btn-primary">Redirection Paypal</button></a>
+                </div>
+            </div>
+        </div>
+        <!--CPS-->
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Coupon CPS
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    <a href="#"><button class="btn btn-primary">Redirection Sandoz</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+{% endblock %}

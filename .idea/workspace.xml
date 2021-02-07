@@ -2,43 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c0ae88d-ae44-4c4e-9a2e-2ceb8e8d606b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/recette/recette0.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/recette/recette1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/recette/recette2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/recette/recette3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/recette/recette4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/recette/recette5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/recette/recette6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/recette/recette7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/recette/recette8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/recette/recette9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/RecetteController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/RecetteFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/RecetteType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/recette/create.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/recette/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/recette/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8e5b1fbd-ca0e-4cb4-943c-d1d21905dfd6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8e5b1fbd-ca0e-4cb4-943c-d1d21905dfd6/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8e5b1fbd-ca0e-4cb4-943c-d1d21905dfd6/storage_v2/_src_/schema/kouizine_geo.sKM6MQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/fil_rouge.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kouizine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210127103615.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20210127103615.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CartController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/cart/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cart/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -181,7 +154,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1612714704289</updated>
-      <workItem from="1612714705323" duration="12325000" />
+      <workItem from="1612714705323" duration="12962000" />
+      <workItem from="1612728943896" duration="7871000" />
     </task>
     <servers />
   </component>
@@ -189,17 +163,40 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1612726073849">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1612732258920">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1612726073849" />
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1612732258920" />
     <state x="740" y="262" key="FileChooserDialogImpl" timestamp="1612723227078">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="262" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1612723227078" />
+    <state x="184" y="86" key="MergeDialog" timestamp="1612727674500">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1612727674500" />
+    <state x="598" y="281" key="MultipleFileMergeDialog" timestamp="1612727674508">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="598" y="281" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1612727674508" />
     <state x="769" y="243" key="NewPhpClassDialog" timestamp="1612714845323">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1612714845323" />
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1612727655293">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1612727655293" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/cart/validation.html.twig</url>
+          <line>39</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
