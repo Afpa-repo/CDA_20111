@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="77fef2da-796b-4674-a7d1-579c87ea4d81" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/MembreController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/authentification/subscribe.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/membre/inscription.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kouizine.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="77fef2da-796b-4674-a7d1-579c87ea4d81" name="Default Changelist" comment="modification de la table membre">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/migrations/Version20210127103615.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20210127103615.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -160,6 +150,8 @@
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="symfony server:start" />
+      <command value="php bin/console doctrine:database:create" />
+      <command value="php bin/console doctrine:migrations:migrate" />
     </option>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -170,11 +162,34 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1612770329574</updated>
-      <workItem from="1612770330763" duration="2004000" />
+      <workItem from="1612770330763" duration="3592000" />
     </task>
+    <task id="LOCAL-00001" summary="modification de la table membre">
+      <created>1612772682946</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1612772682946</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="modification de la table membre" />
+    <option name="LAST_COMMIT_MESSAGE" value="modification de la table membre" />
   </component>
 </project>
