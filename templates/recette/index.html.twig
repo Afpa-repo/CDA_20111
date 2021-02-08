@@ -1,0 +1,20 @@
+{% extends  'base.html.twig' %}
+{% block title 'Nos Recettes'%}
+{% block body %}
+
+        <h1>Nos Recettes</h1>
+
+    {% if recette != null %}
+<ul>
+    {% for recettes in recette %}
+
+        <li><a href="{{ path('show_recette', {'id':recettes.id}) }}">{{ recettes.nom }}</a></li>
+    {% endfor %}
+</ul>
+    {% else %}
+    <p>Il n'y a pas de Recettes !</p>
+    {% endif %}
+
+    <a href="{{ path('recette_create') }}">Créer une Recette</a>
+
+{% endblock %}

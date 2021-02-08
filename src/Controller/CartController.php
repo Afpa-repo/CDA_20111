@@ -1,9 +1,13 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Cb;
+use App\Form\CbType;
 use App\Service\CartService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use \Symfony\Component\Routing\Annotation\Route;
 
@@ -20,6 +24,30 @@ class CartController extends AbstractController {
             'items' => $cartService->getFullCart(),
             'total'=> $cartService->getTotal(),
             'current_menu' => 'panier']
+        );
+    }
+
+    /**
+     * @Route("/panier/validation", name="cart.valid")
+     * @param CartService $cartService
+     * @return Response
+     */
+    public function validation(CartService $cartService, Request $request, EntityManagerInterface $entityManager){
+        $cb= New Cb();
+        $form= $this->createForm(CbType::class, $cb);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($cb);
+            $entityManager->flush();
+            $cartService->empty();
+            return $this->redirectToRoute('cart.index');
+        }
+        return $this->render('cart/validation.html.twig', [
+                'items' => $cartService->getFullCart(),
+                'total'=> $cartService->getTotal(),
+                'formCb' => $form->createView(),
+                'current_menu' => 'panier']
         );
     }
 

@@ -1,0 +1,25 @@
+{%  extends 'base.html.twig' %}
+{% block title "Nos Recettes"%}
+
+{% block body %}
+    <div class="row">
+    <div class="col-12 mb-5 d-flex justify-content-center">
+    <h1>{{ recette.nom }}</h1>
+    </div>
+    </div>
+        <div class="row mb-3">
+        <div class="col-5">
+    <img style="width:25rem" src="./../assets/img/recette/{{ recette.photo }}">
+        </div>
+    <div class="col-6  text-justify">
+        <p>{{ recette.descr }}</p>
+        <p>Temps de préparation: {{ recette.tpsPrep }} minutes </p>
+        <p>Temps de cuisson: {{ recette.tpsCuisson }} minutes</p>
+        <p>Recette pour: {{ recette.portion }} personnes</p>
+        <p>Difficulté: {{ recette.difficulte }}</p>
+        <a href="{{ path('recette_edit', {'id':recette.id}) }}" ><button class="btn btn-success">Modifier</button></a>
+    </div>
+        </div>
+
+
+{% endblock %}
