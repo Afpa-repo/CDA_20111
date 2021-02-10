@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="77fef2da-796b-4674-a7d1-579c87ea4d81" name="Default Changelist" comment="modification de la table membre">
+    <list default="true" id="77fef2da-796b-4674-a7d1-579c87ea4d81" name="Default Changelist" comment="formulaire d'inscription ok">
+      <change afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/RegistrationType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/security/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210127103615.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20210127103615.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -145,13 +147,19 @@
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.scopes" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
-      <command value="symfony server:start" />
       <command value="php bin/console doctrine:database:create" />
       <command value="php bin/console doctrine:migrations:migrate" />
+      <command value="php bin/console doctrine:fixtures:load" />
+      <command value="symfony" />
+      <command value="symfony server:start" />
+      <command value="php bin/console make:form RegistrationType" />
+      <command value="php bin/concole make:controller" />
+      <command value="php bin/console make:controller" />
     </option>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -162,7 +170,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1612770329574</updated>
-      <workItem from="1612770330763" duration="3592000" />
+      <workItem from="1612770330763" duration="13035000" />
+      <workItem from="1612878980038" duration="3543000" />
+      <workItem from="1612943660295" duration="10723000" />
     </task>
     <task id="LOCAL-00001" summary="modification de la table membre">
       <created>1612772682946</created>
@@ -171,7 +181,21 @@
       <option name="project" value="LOCAL" />
       <updated>1612772682946</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="correction d'une erreur dans le fichier migration">
+      <created>1612773979554</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1612773979554</updated>
+    </task>
+    <task id="LOCAL-00003" summary="formulaire d'inscription ok">
+      <created>1612953442565</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1612953442567</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,9 +211,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="modification de la table membre" />
-    <option name="LAST_COMMIT_MESSAGE" value="modification de la table membre" />
+    <MESSAGE value="correction d'une erreur dans le fichier migration" />
+    <MESSAGE value="formulaire d'inscription ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="formulaire d'inscription ok" />
   </component>
 </project>
