@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome{% endblock %}</title>
@@ -19,7 +19,7 @@
                 <a class="nav-link {% if current_menu is defined and current_menu == 'pointretrait' %}active{% endif %}" href="{{path('pointretrait.index')}}">Nos Points Retrait</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link href="#">Nos Fournisseurs</a>
+                <a class="nav-link" href="#">Nos Fournisseurs</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {% if current_menu is defined and current_menu == 'produit' %}active{% endif %}" href="{{path('produit.index')}}">Nos Produits</a>
@@ -52,6 +52,12 @@
     </div>
 </nav>
 <div class="container">
+    <!--AFFICHAGE DES MESSAGES DE SUCCES LORS DU PAIEMENT DE LA COMMANDE , etc -->
+    {% for message in app.flashes('success')%}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
 {% block body %}
 {% endblock %}
 <!---FONTAWESOME--->

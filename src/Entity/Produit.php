@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
 use App\Repository\ProduitRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -13,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository", repositoryClass=ProduitRepository::class)
  * @ORM\Table(name="produit", uniqueConstraints={@ORM\UniqueConstraint(name="ref", columns={"ref"})}, indexes={@ORM\Index(name="four_id", columns={"four_id"}), @ORM\Index(name="tp_id", columns={"tp_id"})})
  */
+
+
 class Produit
 {
     /**

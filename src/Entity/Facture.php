@@ -2,8 +2,12 @@
 
 namespace App\Entity;
 
+use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\FactureRepository;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * Facture
@@ -12,6 +16,17 @@ use App\Repository\FactureRepository;
  */
 class Facture
 {
+    /**
+     * @var array|string représentant les différents types de paiement disponibles
+     */
+    public const PAIEMENT = [0 => "Carte Bancaire", 1 => "Paypal"];
+
+    /**
+     * @var array|string représentant les différentes civilités
+     */
+    public const CIVILITE = [1 => "Madame", 2 => "Mademoiselle", 3 => "Monsieur", 0=>"Inconnue" ];
+
+
     /**
      * @var int
      *
@@ -22,9 +37,23 @@ class Facture
     private $id;
 
     /**
+     * @var int
+     * @ORM\Column(type="smallint")
+     */
+    private $civilite;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=150)
+     * @Assert\Length(min=2, max=150)
+     */
+    private $prenom;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=150, nullable=false)
+     * @Assert\Length(min=5, max=255)
      */
     private $nom;
 
@@ -32,6 +61,7 @@ class Facture
      * @var string
      *
      * @ORM\Column(name="adresse1", type="string", length=150, nullable=false)
+     * @Assert\Length(min=5, max=150)
      */
     private $adresse1;
 
@@ -39,6 +69,7 @@ class Facture
      * @var string|null
      *
      * @ORM\Column(name="adresse2", type="string", length=150, nullable=true)
+     * @Assert\Length(min=5, max=150)
      */
     private $adresse2;
 
@@ -46,6 +77,7 @@ class Facture
      * @var string
      *
      * @ORM\Column(name="cp", type="string", length=5, nullable=false)
+     * @Assert\Length(min=5, max=5)
      */
     private $cp;
 
@@ -53,20 +85,28 @@ class Facture
      * @var string
      *
      * @ORM\Column(name="ville", type="string", length=150, nullable=false)
+     * @Assert\Length(min=5, max=150)
      */
     private $ville;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(name="date_edition", type="date", nullable=false)
      */
     private $dateEdition;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @var int
+     * @ORM\Column(type="smallint")
      */
-    private $modePaiement;
+    private $paiement;
+
+    public function __construct(){
+        $this->setDateEdition(new DateTime());
+        $this->setCivilite(0);
+        $this->setPaiement(0);
+    }
 
     public function getId(): ?int
     {
@@ -133,27 +173,49 @@ class Facture
         return $this;
     }
 
-    public function getDateEdition(): ?\DateTimeInterface
+    public function getDateEdition(): Date
     {
-        return $this->dateEdition;
+        return date('m/d/Y', $this->dateEdition);
     }
 
-    public function setDateEdition(\DateTimeInterface $dateEdition): self
+    public function setDateEdition(DateTimeInterface $dateEdition): self
     {
         $this->dateEdition = $dateEdition;
 
         return $this;
     }
 
-    public function getModePaiement(): ?string
+    public function getPaiement(): ?string
     {
-        return $this->modePaiement;
+        return (self::PAIEMENT[$this->paiement]);
     }
 
-    public function setModePaiement(string $modePaiement): self
+    public function setPaiement(int $paiement): self
     {
-        $this->modePaiement = $modePaiement;
+        $this->paiement = $paiement;
 
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+        return $this;
+    }
+
+    public function getCivilite(): ?string
+    {
+        return (self::CIVILITE[$this->civilite]);
+    }
+
+    public function setCivilite(int $civilite): self
+    {
+        $this->civilite = $civilite;
         return $this;
     }
 

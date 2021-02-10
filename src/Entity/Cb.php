@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CbRepository;
+use App\Entity\Membre;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Cb
@@ -25,6 +27,7 @@ class Cb
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=50, nullable=false)
+     * @Assert\Length(min=1, max=50)
      */
     private $nom;
 
@@ -32,6 +35,7 @@ class Cb
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=50, nullable=false)
+     * @Assert\Length(min=1, max=50)
      */
     private $prenom;
 
@@ -39,25 +43,33 @@ class Cb
      * @var string
      *
      * @ORM\Column(name="numero", type="string", length=255, nullable=false)
+     * @Assert\Length(min=1, max=255)
      */
     private $numero;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="date", type="date", nullable=false)
+     * @ORM\Column(name="date", type="string", nullable=false)
+     * @Assert\Length(min=5, max=5)
      */
     private $date;
 
     /**
-     * @var \Membre
+     * @var Membre
      *
      * @ORM\ManyToOne(targetEntity="Membre")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="membre_id", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumns({ @ORM\JoinColumn(name="membre_id", referencedColumnName="id") })
      */
     private $membre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lastDigits", type="string", nullable=false)
+     * @Assert\Length(min=4, max=4)
+     */
+    private $lastDigits;
 
     public function getId(): ?int
     {
@@ -90,25 +102,35 @@ class Cb
 
     public function getNumero(): ?string
     {
-        return $this->numero;
+        return "**** **** **** ".$this->getLastDigits();
     }
 
     public function setNumero(string $numero): self
     {
-        $this->numero = $numero;
+        $this->numero = password_hash($numero, PASSWORD_BCRYPT, ['cost' => 12]);
 
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getDate(): string
     {
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDate(array $expiration): self
     {
-        $this->date = $date;
+        $this->date = $expiration[0].'/'.$expiration[1];
+        return $this;
+    }
 
+    public function getLastDigits(): string
+    {
+        return $this->lastDigits;
+    }
+
+    public function setLastDigits($lastDigits): self
+    {
+        $this->lastDigits = $lastDigits;
         return $this;
     }
 
@@ -117,12 +139,9 @@ class Cb
         return $this->membre;
     }
 
-    public function setMembre(?Membre $membre): self
+    public function setMembre(Membre $membre): self
     {
         $this->membre = $membre;
-
         return $this;
     }
-
-
 }

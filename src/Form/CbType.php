@@ -12,10 +12,10 @@ class CbType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('prenom')
-            ->add('numero')
-            ->add('date')
+            ->add('nom', null, ['label'=>'Nom du titulaire de la carte',  'help'=>'exemple: Dupont', 'required'=>true])
+            ->add('prenom', null, ['label'=>'Prénom du titulaire de la carte', 'help'=>'exemple: Henry', 'required'=>true])
+            ->add('numero', null, ['label'=>'Numéro de la carte bancaire', 'required'=>true])
+            ->add('date', null, ['label'=>'Date d\'expiration', 'required'=>true])
         ;
     }
 

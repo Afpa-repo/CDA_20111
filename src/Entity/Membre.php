@@ -158,7 +158,7 @@ class Membre implements UserInterface
     /**
      * @var DateTime|null
      *
-     * @ORM\Column(name="desinscription", type="date", nullable=true)
+     * @ORM\Column(name="desinscription", type="datetime", nullable=true)
      */
     private $desinscription;
 
@@ -387,15 +387,14 @@ class Membre implements UserInterface
         return $this;
     }
 
-    public function getInscription(): ?\DateTimeInterface
+    public function getInscription(): string
     {
-        return $this->inscription;
+        return $this->inscription->format('d-m-Y');
     }
 
     public function setInscription(\DateTimeInterface $inscription): self
     {
         $this->inscription = $inscription;
-
         return $this;
     }
 
@@ -485,7 +484,6 @@ class Membre implements UserInterface
         if ($this->produit->removeElement($produit)) {
             $produit->removeMembre($this);
         }
-
         return $this;
     }
 //les 4 fonctions suivantes sont necessaire au module de sécurité UserInterface

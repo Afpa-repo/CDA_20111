@@ -15,7 +15,7 @@ class TypeProduitFixtures extends Fixture
             $tp = new TypeProduit();
             $tp->setNom("Type n°".$i." de Produits")
                 ->setDescr("Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.")
-                ->setPhoto("jpg");
+                ->setPhoto("default.jpg");
             $manager->persist($tp);
         endfor;
         $manager->flush();

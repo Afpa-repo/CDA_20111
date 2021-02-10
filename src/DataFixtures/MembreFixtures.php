@@ -4,13 +4,15 @@ namespace App\DataFixtures;
 
 use App\Entity\Membre;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class MembreFixtures extends Fixture
+class MembreFixtures extends Fixture implements FixtureGroupInterface
 {
-    public function load(ObjectManager $manager)
+   public function load(ObjectManager $manager)
     {
         for($i=0;$i<10;$i++):
+           $ref = 'membre'.$i;
             $membre = new Membre();
             $membre->setCivilite("Mr")
                 ->setNom("Nom_Membre_".$i)
@@ -27,8 +29,16 @@ class MembreFixtures extends Fixture
                 ->setMdp(password_hash("Password".$i, PASSWORD_BCRYPT, ['cost'=>12]))
                 ->setNiveau(1)
                 ->setDescr("Salut les Foodies! Moi c'est Membre n°".$i);
+            $this->addReference($ref, $membre);
             $manager->persist($membre);
         endfor;
         $manager->flush();
     }
+
+    public static function getGroups(): array
+    {
+        return ['group1', 'group2'];
+    }
+
+
 }

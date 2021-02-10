@@ -1,0 +1,58 @@
+{% extends  'base.html.twig' %}
+{% block title 'Paiement'%}
+{% block body %}
+<!--MOYEN DE PAIEMENT---->
+<div class="container">
+    <div class="row">
+        <div class="col-12 mb-4">
+            <h2>Moyen de paiement</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <button class="btn btn-link collapsed h3 mb-0" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Carte bancaire
+                    </button>
+                </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        {{ form_start(formCb) }}
+                        {{ form_row(formCb.nom) }}
+                        {{ form_row(formCb.prenom) }}
+                        {{ form_row(formCb.numero) }}
+                        {{ form_row(formCb.date) }}<!--Trouver un meilleur format pour la date mm/yy-->
+                        <button type="submit" class="btn btn-success">Valider</button>
+                        {{ form_end(formCb) }}
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <button class="btn btn-link collapsed h3 mb-0" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Paypal
+                    </button>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <a href="#"><button class="btn btn-primary">Redirection Paypal</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <button class="btn btn-link collapsed h3 mb-0" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Coupon CPS
+                    </button>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <a href="#"><button class="btn btn-primary">Redirection Sandoz</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

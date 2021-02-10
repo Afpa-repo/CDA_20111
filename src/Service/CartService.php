@@ -21,7 +21,7 @@ class CartService{
     }
 
     /**
-     * function pour ajouter un produit dans le panier
+     * méthode pour ajouter un produit dans le panier
      * @param int $id
      */
     public function add(int $id) : void{
@@ -34,7 +34,7 @@ class CartService{
     }
 
     /**
-     * function pour supprimer un produit du panier
+     * méthode pour supprimer la quantité totale d'un produit du panier
      * @param int $id
      */
     public function removeAll(int $id) : void{
@@ -47,7 +47,7 @@ class CartService{
     }
 
     /**
-     * function pour supprimer un produit du panier
+     * méthode pour supprimer un produit du panier
      * @param int $id
      */
     public function remove(int $id) : void{
@@ -64,14 +64,14 @@ class CartService{
     }
 
     /**
-     * function pour vider le panier
+     * méthode pour vider le panier
      */
     public function empty() : void{
-        $this->session->clear('panier');
+        $this->session->clear();
     }
 
     /**
-     * fonction qui retourne le panier sous forme de table id => quantite
+     * méthode qui retourne le panier sous forme de table id => quantite
      * @return array
      */
     public function getCart() : array{
@@ -80,7 +80,7 @@ class CartService{
 
 
     /**
-     * fonction qui retourne le panier sous forme de tableau,
+     * methode qui retourne le panier sous forme de tableau,
      * avec la quantité des produits et le détail des produits (class Produit)
      * @return array
      */
@@ -88,26 +88,28 @@ class CartService{
         //on récupère le panier
         $panier = $this->session->get('panier', []);
         $panierWithData = [];
-        foreach($panier as $id => $quantity):
-            //on affecte les détails du produit et sa quantité dans le tableau $panierWithData
-            $panierWithData[] = [
-                'produit' => $this->produitRepository->find($id),
-                'quantite' => $quantity
-            ];
-        endforeach;
+        if(!empty($panier)){
+            foreach($panier as $id => $quantity):
+                //on affecte les détails du produit et sa quantité dans le tableau $panierWithData
+                $panierWithData[] = [
+                    'produit' => $this->produitRepository->find($id),
+                    'quantite' => $quantity
+                ];
+            endforeach;
+        }
         //on retourne la panier avec le détail des produits
         return $panierWithData;
     }
 
     /**
-     * fonction qui retourne le total du panier
+     * méthode qui retourne le total du panier
      * @return float
      */
     public function getTotal() : float{
         $total = 0;
         foreach($this->getFullCart() as $item):
-            //on incrémente $total avec la total pour chaque produit
-            $total += $item['produit']->getPrix()*$item['quantite'];
+            //on incrémente $total avec le total de chaque produit
+            $total += $item['produit']->getPrix() * $item['quantite'];
         endforeach;
         return $total;
     }

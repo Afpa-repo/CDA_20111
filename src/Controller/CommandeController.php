@@ -4,14 +4,14 @@
 namespace App\Controller;
 
 use App\Repository\MembreRepository;
-use App\Repository\PaiementRepository;
+use App\Repository\CommandeRepository;
 use App\Service\CartService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use \Symfony\Component\Routing\Annotation\Route;
 
-class PaiementController extends AbstractController
+class CommandeController extends AbstractController
 {
 
     /**
@@ -27,7 +27,7 @@ class PaiementController extends AbstractController
      */
     private $em;
 
-    public function __construct(PaiementRepository $repository, EntityManagerInterface $em,CartService $cartService){
+    public function __construct(CommandeRepository $repository, EntityManagerInterface $em,CartService $cartService){
         $this->cartService = $cartService;
         $this->repository = $repository;
         $this->em = $em;

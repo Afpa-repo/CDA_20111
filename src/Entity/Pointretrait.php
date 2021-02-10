@@ -3,16 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\PointretraitRepository;
+use App\Entity\Fournisseur;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 /**
  * Pointretrait
- * @ORM\Entity(repositoryClass="App\Repository\PointretraitRepository", repositoryClass=PointretraitRepository::class)
+ * @ORM\Entity(repositoryClass=PointretraitRepository::class)
  * @ORM\Table(name="pointretrait")
  * @UniqueEntity("nom") //ceci définit le champs "nom" comme unique dans la base de données. Les erreurs de doublons seront ainsi traitées
  */
@@ -135,7 +136,7 @@ class Pointretrait
      */
     public function __construct()
     {
-        $this->four = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->four = new ArrayCollection();
     }
 
     public function getId(): ?int
