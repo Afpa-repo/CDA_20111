@@ -12,6 +12,7 @@ use App\Repository\RecetteRepository;
  * @ORM\Entity(repositoryClass="App\Repository\RecetteRepository", repositoryClass=RecetteRepository::class)
  * @ORM\Table(name="recette", indexes={@ORM\Index(name="cat_id", columns={"cat_id"}), @ORM\Index(name="membre_id", columns={"auteur"}), @ORM\Index(name="theme_id", columns={"theme_id"})})
  */
+
 class Recette
 {
     /**
@@ -87,9 +88,9 @@ class Recette
     private $portion;
 
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="difficulte", type="boolean", nullable=false)
+     * @ORM\Column(name="difficulte", type="integer", nullable=false)
      */
     private $difficulte;
 
@@ -267,12 +268,12 @@ class Recette
         return $this;
     }
 
-    public function getDifficulte(): ?bool
+    public function getDifficulte(): ?int
     {
         return $this->difficulte;
     }
 
-    public function setDifficulte(bool $difficulte): self
+    public function setDifficulte(int $difficulte): self
     {
         $this->difficulte = $difficulte;
 
