@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>inscription</h1>
+    {{  form_start(form) }}
+    {{ form_row(form.pseudo, {'label':"Nom d'utilisateur",'attr':{'placeholder': "Entre 3 et 20 caractéres"}}) }}
+    {{ form_row(form.email, {'label':"E-mail",'attr':{'placeholder':"Entrez une adresse mail valide"}}) }}
+    {{ form_row(form.mdp,{'label':"Mot de passe",'attr':{'placeholder':"Mot de passe contenant bla caractere et bla chiffre"}}) }}
+    {{ form_row(form.confirm_password,{'label':"Confirmez votre mot de passe"}) }}
+    <button type="submit" class="btn btn-success"> enregistrer</button>
+    {{ form_end(form) }}
+
+{% endblock %}
