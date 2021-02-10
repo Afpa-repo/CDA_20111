@@ -82,7 +82,7 @@ class RecetteController extends AbstractController
     public function show(Recette $recette){
 
         return $this->render('recette/show.html.twig',[
-            'recette'=> $recette
+            'recette'=> $recette,
         ]);
 
     }
