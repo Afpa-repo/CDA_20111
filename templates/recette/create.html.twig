@@ -14,11 +14,12 @@
 
     {{ form_row(formRecette.nom ,{'attr' : {'placeholder': "Nom de la Recette"}})}}
     {{ form_row(formRecette.descr,{'attr' : {'placeholder': "Contenu de la Recette" }}) }}
+    {{ form_row(formRecette.produit,{'attr' : {'placeholder': "Ingrédients" }}) }}
     {{ form_row(formRecette.photo,{'attr' : {'placeholder': "Nom de la photo de la Recette" }}) }}
     {{ form_row(formRecette.tpsPrep,{'attr' : {'placeholder': "Temps de préparation de la Recette" }}) }}
     {{ form_row(formRecette.tpsCuisson,{'attr' : {'placeholder': "Temps de cuisson de la Recette" }}) }}
     {{ form_row(formRecette.portion,{'attr' : {'placeholder': "Portion" }}) }}
-    {{ form_row(formRecette.difficulte,{'attr' : {'placeholder': "Difficulté de la Recette" }}) }}
+    {{ form_row(formRecette.difficulte,{'attr' : {'placeholder': "Difficulté de la Recette (note sur 5)" }}) }}
 
     <button type="submit" class="btn btn-primary">
         {% if editMode %}

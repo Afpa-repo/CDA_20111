@@ -16,7 +16,12 @@
         <p>Temps de préparation: {{ recette.tpsPrep }} minutes </p>
         <p>Temps de cuisson: {{ recette.tpsCuisson }} minutes</p>
         <p>Recette pour: {{ recette.portion }} personnes</p>
-        <p>Difficulté: {{ recette.difficulte }}</p>
+        <p>Difficulté:
+
+            {% for index in 1..recette.difficulte %}
+                <img style="width: 1rem" src="./../assets/img/recette/rating/logo2.jpg">
+            {% endfor %}
+        </p>
         <a href="{{ path('recette_edit', {'id':recette.id}) }}" ><button class="btn btn-success">Modifier</button></a>
     </div>
         </div>
