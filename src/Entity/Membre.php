@@ -6,14 +6,29 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\MembreRepository;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+
+
+
+//@UniqueEntity pour s'assurer que les valeurs indiqués sont unique dans la bdd'
 /**
  * Membre
  * @ORM\Entity(repositoryClass="App\Repository\MembreRepository", repositoryClass=MembreRepository::class)
  * @ORM\Table(name="membre", indexes={@ORM\Index(name="pr_id", columns={"pr_id"})})
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message= "L'email indiqué est déjà utilisé"
+ * )
+ * @UniqueEntity(
+ *     fields={"pseudo"},
+ *     message= "Le nom d'utilisateur indiqué est déjà utilisé"
+ * )
  */
-class Membre
+class Membre implements UserInterface
 {
     /**
      * @var int
@@ -84,6 +99,7 @@ class Membre
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     * @Assert\Email()
      */
     private $email;
 
@@ -98,6 +114,13 @@ class Membre
      * @var string|null
      *
      * @ORM\Column(name="pseudo", type="string", length=20, nullable=true)
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 20,
+     *      minMessage = "Votre nom doit contenir un minimum de {{ limit }} caractéres",
+     *      maxMessage = "Votre nom doit contenir un maximum de {{ limit }} caractéres",
+     *      allowEmptyString = false
+     * )
      */
     private $pseudo;
 
@@ -107,11 +130,14 @@ class Membre
      * @ORM\Column(name="photo", type="string", length=255, nullable=true)
      */
     private $photo;
-
+//" @Assert\Length(min=8, minMessage = "Votre mot de passe doit contenir un minimum de {{ limit }} caractéres")"
+// gére la longueur minimum du mdp et configure un message d'erreur
     /**
      * @var string
      *
      * @ORM\Column(name="mdp", type="string", length=255, nullable=false)
+     * @Assert\Length(min=8,
+     *      minMessage = "Votre mot de passe doit contenir un minimum de {{ limit }} caractéres")
      */
     private $mdp;
 
@@ -123,14 +149,14 @@ class Membre
     private $niveau;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
-     * @ORM\Column(name="inscription", type="date", nullable=false)
+     * @ORM\Column(name="inscription", type="datetime", nullable=false)
      */
     private $inscription;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(name="desinscription", type="date", nullable=true)
      */
@@ -166,6 +192,17 @@ class Membre
      * @ORM\ManyToMany(targetEntity="Produit", mappedBy="membre")
      */
     private $produit;
+
+//variable servant à la confirmation des mots de passe.
+//---
+// "@Assert\EqualTo (propertyPath="mdp",message="Votre mot de passe et la confirmation ne correspondent pas") "
+// sert à vérifier que les valeur $mdp et $confirm_password sont identiques
+
+    /**
+     * @Assert\EqualTo (propertyPath="mdp",message="Votre mot de passe et la confirmation ne correspondent pas")
+     */
+    public $confirm_password;
+
 
     /**
      * Constructor
@@ -451,5 +488,29 @@ class Membre
 
         return $this;
     }
+//les 4 fonctions suivantes sont necessaire au module de sécurité UserInterface
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
 
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+//sert à gérer les roles de sutilisateurs
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->mdp;
+    }
 }

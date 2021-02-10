@@ -27,6 +27,10 @@
             <li class="nav-item">
                 <a class="nav-link {% if current_menu is defined and current_menu == 'recette' %}active{% endif %}" href="{{path('recette')}}">Nos Recettes</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {% if current_menu is defined and current_menu == 'inscription' %}active{% endif %}" href="{{path('security_registration')}}">Inscription</a>
+            </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Dropdown link
