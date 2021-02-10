@@ -49,8 +49,18 @@ class SecurityController extends AbstractController
     /**
      * @Route("/connexion",name="security_login")
      */
+//    metode permettant la connexion, voir security.yaml pour configuration du provider et du firewall qui s'attachent à cette métode
     public function login()
     {
         return $this->render('security/login.html.twig');
+    }
+
+    /**
+     * @Route("/deconnexion",name="security_logout")
+     */
+//metode servant à la deconnexion, voir security.yaml pour configuration de la deconnexion
+    public function logout()
+    {
+
     }
 }

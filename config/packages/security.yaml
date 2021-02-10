@@ -7,6 +7,12 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         users_in_memory: { memory: null }
+#        désigne quelle valeur de l'entité sera utilisé pour la connexion
+        in_database:
+            entity:
+                class:  App\Entity\Membre
+                property:   email
+#                -----
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -14,8 +20,20 @@ security:
         main:
             anonymous: true
             lazy: true
-            provider: users_in_memory
 
+#            désigne le provider utilisé pour gérer la connexion
+            provider: in_database
+#            met en place la connexion et vérifie le mdp quand la route security_login est appelé dans un formulaire
+            form_login:
+                login_path: security_login
+                check_path: security_login
+#                -----
+
+            logout:
+#                désigne la fonction qui servira à la deconnexion
+                path:   security_logout
+#                désigne la vue de redirection aprés deconnexion
+                target: home
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 

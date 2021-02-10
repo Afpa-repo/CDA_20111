@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="77fef2da-796b-4674-a7d1-579c87ea4d81" name="Default Changelist" comment="formulaire d'inscription ok">
-      <change afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/RegistrationType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/security/index.html.twig" afterDir="false" />
+    <list default="true" id="77fef2da-796b-4674-a7d1-579c87ea4d81" name="Default Changelist" comment="formulaire d'inscription ok ajout des fichiers manquants">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +174,7 @@
       <updated>1612770329574</updated>
       <workItem from="1612770330763" duration="13035000" />
       <workItem from="1612878980038" duration="3543000" />
-      <workItem from="1612943660295" duration="10723000" />
+      <workItem from="1612943660295" duration="16489000" />
     </task>
     <task id="LOCAL-00001" summary="modification de la table membre">
       <created>1612772682946</created>
@@ -195,7 +197,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612953442567</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="formulaire d'inscription ok ajout des fichiers manquants">
+      <created>1612954895901</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1612954895901</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,6 +226,7 @@
     <MESSAGE value="modification de la table membre" />
     <MESSAGE value="correction d'une erreur dans le fichier migration" />
     <MESSAGE value="formulaire d'inscription ok" />
-    <option name="LAST_COMMIT_MESSAGE" value="formulaire d'inscription ok" />
+    <MESSAGE value="formulaire d'inscription ok ajout des fichiers manquants" />
+    <option name="LAST_COMMIT_MESSAGE" value="formulaire d'inscription ok ajout des fichiers manquants" />
   </component>
 </project>
