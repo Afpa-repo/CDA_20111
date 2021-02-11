@@ -1,0 +1,37 @@
+{% extends  'base.html.twig' %}
+
+{% block title 'Profil'%}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-12">
+                <h2 class="text-center">Vos informations</h2><br>
+                <div class="row">
+                    <div class="col-2">Nom : </div>
+                    <div class="col-10 text-left">{{ app.user.nom }}</div>
+                    <div class="col-2">Pseudo : </div>
+                    <div class="col-10 text-left">{{ app.user.pseudo }}</div>
+                    <div class="col-2">Email : </div>
+                    <div class="col-10 text-left">{{ app.user.email }}</div>
+                    <div class="col-2">Ville : </div>
+                    <div class="col-10 text-left">{{ app.user.ville }}</div>
+                    <div class="col-2">Adresse 1 : </div>
+                    <div class="col-10 text-left">{{ app.user.adresse1 }}</div>
+                    <div class="col-2">Adresse 2 : </div>
+                    <div class="col-10 text-left">{{ app.user.adresse2 }}</div>
+                    <div class="col-2">Membre depuis : </div>
+                    <div class="col-10 text-left">{{ app.user.inscription | date}}</div>
+                    <a href="{{ path('profil_edit', {'id': app.user.id}) }}" class="btn btn-dark mt-3 mb-3">Editer</a>
+                </div>
+                    <h2 class="text-center">Vos recettes</h2>
+                    {% for recette in app.user.recette %}
+                        <div class="col-2">Titre : </div>
+                        <div class="col-10 text-left"><a href="">{{ recette.nom }}</a></div>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

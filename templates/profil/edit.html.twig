@@ -1,0 +1,20 @@
+{% extends  'base.html.twig' %}
+
+{% block title 'Modification Profil'%}
+{% block body %}
+    <h1>Modification du profil</h1>
+{{ form_start(formProfil) }}
+
+    {{ form_row(formProfil.nom)}}
+    {{ form_row(formProfil.prenom)}}
+    {{ form_row(formProfil.tel)}}
+    {{ form_row(formProfil.ville) }}
+    {{ form_row(formProfil.adresse1) }}
+    {{ form_row(formProfil.email) }}
+    {{ form_row(formProfil.pseudo) }}
+
+<button type="submit" class="btn btn-success">Enregistrer</button>
+{{ form_end(formProfil) }}
+
+
+{% endblock %}
