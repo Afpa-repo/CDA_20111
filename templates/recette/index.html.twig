@@ -5,12 +5,26 @@
         <h1>Nos Recettes</h1>
 
     {% if recette != null %}
-<ul>
+<table class="table table-hover">
+    <tbody>
+    <thead class="thead-dark">
+    <tr>
+        <th></th>
+        <th>Nom</th>
+        <th>Auteur</th>
+        <th>Temps de préparation</th>
+    </tr>
+    </thead>
     {% for recettes in recette %}
-
-        <li><a href="{{ path('show_recette', {'id':recettes.id}) }}">{{ recettes.nom }}</a></li>
+<tr>
+    <td><img style="width: 10rem" src="./../assets/img/recette/{{ recettes.photo }}"></td>
+    <td><a href="{{ path('show_recette', {'id':recettes.id}) }}">{{ recettes.nom }}</a></td>
+    <td>{{ recettes.auteur.pseudo }}</td>
+    <td>{{ recettes.tpsPrep }} mn</td>
+</tr>
     {% endfor %}
-</ul>
+    </tbody>
+</table>
     {% else %}
     <p>Il n'y a pas de Recettes !</p>
     {% endif %}
