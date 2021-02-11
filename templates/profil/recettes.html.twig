@@ -5,8 +5,11 @@
 {% block body %}
     <h1>Vos recettes</h1>
     <div class="col-10">
-        {% for recette in recettes %}
-            <div>{{ recette.nom }}</div>
-        {% endfor %}
+        <ul>
+            {% for recette in app.user.recette %}
+                <li><a href="{{ path('show_recette', {'id':recette.id}) }}">{{ recette.nom }}</a></li>
+            {% endfor %}
+        </ul>
+
     </div>
 {% endblock %}

@@ -182,7 +182,7 @@ class Membre implements UserInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Recette", mappedBy="membre")
+     * @ORM\OneToMany(targetEntity="Recette", mappedBy="auteur")
      */
     private $recette;
 

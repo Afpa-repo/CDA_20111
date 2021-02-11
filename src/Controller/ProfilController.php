@@ -42,6 +42,13 @@ class ProfilController extends AbstractController
     }
 
     /**
+     * @Route("/profil/{id}/recettes", name="profil_recettes")
+     * @return Response
+     */
+    public function showRecettes():Response {
+        return $this->render('profil/recettes.html.twig');
+    }
+    /**
      * @Route("/profil/{id}/edit", name="profil_edit")
      * @param Request $request
      * @param ObjectManager $manager
