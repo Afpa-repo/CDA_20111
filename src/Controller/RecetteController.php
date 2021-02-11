@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 
 class RecetteController extends AbstractController
@@ -51,6 +52,8 @@ class RecetteController extends AbstractController
     public function form(Recette $recette = null , Request $request, EntityManagerInterface $entityManager){
         if(!$recette) {
             $recette = new Recette();
+            // On récupère le membre connecté pour le lier à la publication, il apparaîtra dans le 'show'
+            $recette->setAuteur($this->getUser());
         }
         //création du formulaire : commande php bin/console make:form puis on l'appelle
 
