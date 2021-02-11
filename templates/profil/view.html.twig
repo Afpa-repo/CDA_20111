@@ -1,40 +1,72 @@
 {% extends  'base.html.twig' %}
 
-{% block title 'Profil'%}
+{% block title 'Profil' %}
 
 {% block body %}
-
-    {% for message in app.flashes('message') %}
-        <div class="mt-4 alert alert-success col-10">{{ message }}</div>
-    {% endfor %}
-        <div class="row mt-5">
-            <div class="col-12">
-                <h2 class="text-center">Vos informations</h2><br>
-                <div class="row">
-                    <div class="col-2">Nom : </div>
-                    <div class="col-10 text-left">{{ app.user.nom }}</div>
-                    <div class="col-2">Pseudo : </div>
-                    <div class="col-10 text-left">{{ app.user.pseudo }}</div>
-                    <div class="col-2">Email : </div>
-                    <div class="col-10 text-left">{{ app.user.email }}</div>
-                    <div class="col-2">Ville : </div>
-                    <div class="col-10 text-left">{{ app.user.ville }}</div>
-                    <div class="col-2">Adresse 1 : </div>
-                    <div class="col-10 text-left">{{ app.user.adresse1 }}</div>
-                    <div class="col-2">Adresse 2 : </div>
-                    <div class="col-10 text-left">{{ app.user.adresse2 }}</div>
-                    <div class="col-2">Membre depuis : </div>
-                    <div class="col-10 text-left">{{ app.user.inscription | date}}</div>
-                    <a href="{{ path('profil_edit', {'id': app.user.id}) }}" class="btn btn-dark mt-3 mb-3">Editer</a>
-                    <a href="{{ path('profil_edit_password', {'id': app.user.id}) }}" class="btn btn-dark mt-3 ml-3 mb-3">Changer mot de passe</a>
-                </div>
-                    <h2 class="text-center">Vos recettes</h2>
-                    {% for recettes in app.user.recette %}
-                        <div class="col-2">Titre : </div>
-                        <div class="col-10 text-left"><a href="">{{ recettes.nom }}</a></div>
-                    {% endfor %}
+    <div class="card mt-3">
+        <div class="card-header">
+            <div class="row">
+                <i class="fas fa-user-circle fa-2x ml-2 "></i>
+                <p class="h4 ml-1">{{ app.user.pseudo }}</p>
             </div>
         </div>
-
+        <div class="row no-gutters mt-2">
+            <div class="col-md-auto border-right pr-1">
+                {% if not app.user.photo %}
+                    <img src="http://placehold.it/200x200" alt="placeholder">
+                {% else %}
+                    <img src="" id="img_profil" alt="image du profil">
+                {% endif %}
+                <div class="row ml-1">
+                    <p class="ml-1 font-weight-bold">Niveau:</p>
+                    {% if app.user.niveau ==1 %}
+                        <p class="ml-1"> membre</p>
+                    {% else %}
+                        <p>placeholder</p>
+                    {% endif %}
+                </div>
+                <div class="row ml-1">
+                    <p class="ml-1 font-weight-bold">Inscription:</p>
+                    <p class="ml-1">{{ app.user.inscription }}</p>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Vos informations</h5>
+                    <div class="row ml-1 border-top">
+                        <p class="ml-1 font-weight-bold">Nom:</p>
+                        <p class="ml-1">{{ app.user.nom }}</p>
+                        <p class="ml-2 font-weight-bold">Préom:</p>
+                        <p class="ml-1">{{ app.user.prenom }}</p>
+                    </div>
+                    <div class="row ml-1 border-top">
+                        <p class="ml-1 font-weight-bold">E-mail:</p>
+                        <p class="ml-1">{{ app.user.email }}</p>
+                        <p class="ml-2 font-weight-bold">Téléphone:</p>
+                        <p class="ml-1">{{ app.user.tel }}</p>
+                    </div>
+                    <div class="row border-top ">
+                        <div class="col-auto">
+                            <p class="font-weight-bold ml-1">Adresse 1</p>
+                        </div>
+                        <div class="col">{{ app.user.adresse1 }}</div>
+                    </div>
+                    <div class="row border-top">
+                        <div class="col-auto">
+                            <p class="font-weight-bold ml-1">Adresse 2</p>
+                        </div>
+                        <div class="col">{{ app.user.adresse2 }}</div>
+                    </div>
+                    <div class="row ml-1 border-top">
+                        <p class="ml-1 font-weight-bold">Ville:</p>
+                        <p class="ml-1">{{ app.user.ville }}</p>
+                        <p class="ml-2 font-weight-bold">Code postal:</p>
+                        <p class="ml-1">{{ app.user.cp }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('profil_edit', {'id': app.user.id}) }}" class="btn btn-dark mt-3 mb-3">Editer</a>
 
 {% endblock %}
