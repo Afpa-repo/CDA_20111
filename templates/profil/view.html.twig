@@ -4,7 +4,9 @@
 
 {% block body %}
 
-    <div class="container">
+    {% for message in app.flashes('message') %}
+        <div class="mt-4 alert alert-success col-10">{{ message }}</div>
+    {% endfor %}
         <div class="row mt-5">
             <div class="col-12">
                 <h2 class="text-center">Vos informations</h2><br>
@@ -24,14 +26,15 @@
                     <div class="col-2">Membre depuis : </div>
                     <div class="col-10 text-left">{{ app.user.inscription | date}}</div>
                     <a href="{{ path('profil_edit', {'id': app.user.id}) }}" class="btn btn-dark mt-3 mb-3">Editer</a>
+                    <a href="{{ path('profil_edit_password', {'id': app.user.id}) }}" class="btn btn-dark mt-3 ml-3 mb-3">Changer mot de passe</a>
                 </div>
                     <h2 class="text-center">Vos recettes</h2>
-                    {% for recette in app.user.recette %}
+                    {% for recettes in app.user.recette %}
                         <div class="col-2">Titre : </div>
-                        <div class="col-10 text-left"><a href="">{{ recette.nom }}</a></div>
+                        <div class="col-10 text-left"><a href="">{{ recettes.nom }}</a></div>
                     {% endfor %}
             </div>
         </div>
-    </div>
+
 
 {% endblock %}
