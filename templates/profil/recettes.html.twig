@@ -1,0 +1,12 @@
+{% extends  'base.html.twig' %}
+
+{% block title 'Profil'%}
+
+{% block body %}
+    <h1>Vos recettes</h1>
+    <div class="col-10">
+        {% for recette in recettes %}
+            <div>{{ recette.nom }}</div>
+        {% endfor %}
+    </div>
+{% endblock %}
