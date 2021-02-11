@@ -2,6 +2,8 @@
 
 namespace App\Form;
 
+
+use App\Entity\Membre;
 use App\Entity\Produit;
 use App\Entity\Recette;
 use Symfony\Component\Form\AbstractType;
@@ -10,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 
 class RecetteType extends AbstractType
 {
