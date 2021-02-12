@@ -20,13 +20,13 @@ class RecetteType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('descr',TextareaType::class, ['label'=>'Description'])
+            ->add('descr')
             ->add('produit', EntityType::class, ['class'=> Produit::class, 'multiple'=> true, 'choice_label'=>'nom'])
             ->add('photo')
-            ->add('tpsPrep',TextType::class, ['label'=> 'Temps de préparation'])
-            ->add('tpsCuisson',TextType::class, ['label'=> 'Temps de cuisson'])
+            ->add('tpsPrep')
+            ->add('tpsCuisson')
             ->add('portion')
-            ->add('difficulte',TextType::class, ['label'=> 'Difficulté'])
+            ->add('difficulte')
         ;
     }
 

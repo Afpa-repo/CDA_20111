@@ -1,7 +1,6 @@
 <?php
 
 namespace App\DataFixtures;
-
 use App\Entity\Recette;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;

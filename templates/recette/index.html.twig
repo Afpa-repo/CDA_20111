@@ -2,10 +2,8 @@
 {% block title 'Nos Recettes'%}
 {% block body %}
 
-        <h1>Nos Recettes</h1>
-
     {% if recette != null %}
-<table class="table table-hover">
+<table class="table table-hover mt-3">
     <tbody>
     <thead class="thead-dark">
     <tr>
@@ -13,6 +11,7 @@
         <th>Nom</th>
         <th>Auteur</th>
         <th>Temps de préparation</th>
+        <th><a hover="Ajouter" class="active" href="{{ path('recette_create') }}">Ajouter</a></th>
     </tr>
     </thead>
     {% for recettes in recette %}
@@ -21,6 +20,7 @@
     <td><a href="{{ path('show_recette', {'id':recettes.id}) }}">{{ recettes.nom }}</a></td>
     <td>{{ recettes.auteur.pseudo }}</td>
     <td>{{ recettes.tpsPrep }} mn</td>
+    <td></td>
 </tr>
     {% endfor %}
     </tbody>
@@ -29,6 +29,6 @@
     <p>Il n'y a pas de Recettes !</p>
     {% endif %}
 
-    <a href="{{ path('recette_create') }}">Créer une Recette</a>
+
 
 {% endblock %}

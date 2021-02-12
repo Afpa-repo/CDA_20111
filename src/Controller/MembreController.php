@@ -8,7 +8,4 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MembreController extends AbstractController
 {
-
-
-
 }
