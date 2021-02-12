@@ -2,15 +2,18 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\RecetteRepository;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 /**
  * Recette
  * @ORM\Entity(repositoryClass="App\Repository\RecetteRepository", repositoryClass=RecetteRepository::class)
  * @ORM\Table(name="recette", indexes={@ORM\Index(name="cat_id", columns={"cat_id"}), @ORM\Index(name="membre_id", columns={"auteur"}), @ORM\Index(name="theme_id", columns={"theme_id"})})
+ * @Vich\Uploadable()
  */
 
 class Recette
@@ -23,6 +26,12 @@ class Recette
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+    /**
+     * @var File
+     * @Vich\UploadableField(mapping="recette_image", fileNameProperty="photo")
+     */
+    private $image_file;
 
     /**
      * @var string
@@ -47,7 +56,6 @@ class Recette
 
     /**
      * @var string|null
-     *
      * @ORM\Column(name="photo", type="string", length=255, nullable=true)
      */
     private $photo;
@@ -367,4 +375,22 @@ class Recette
         return $this;
     }
 
+    /**
+     * @return null|File
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->image_file;
+    }
+
+
+    /**
+     * @param null|File $image_file
+     * @return Recette
+     */
+    public function setImageFile(?File $image_file): Recette
+    {
+        $this->image_file = $image_file;
+        return $this;
+    }
 }

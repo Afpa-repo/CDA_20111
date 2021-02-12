@@ -110,7 +110,6 @@ class Produit
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     *
      * @ORM\ManyToMany(targetEntity="Recette", inversedBy="produit")
      * @ORM\JoinTable(name="ingredient",
      *   joinColumns={

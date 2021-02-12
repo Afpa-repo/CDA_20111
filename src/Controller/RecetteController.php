@@ -10,7 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 
 class RecetteController extends AbstractController
@@ -88,5 +87,14 @@ class RecetteController extends AbstractController
             'recette'=> $recette,
         ]);
 
+    }
+
+    /**
+     * @Route("/recette/remove/{id}", name="remove_recette")
+     */
+    public function remove(Recette $recette, EntityManagerInterface $em){
+       $em->remove($recette);
+       $em->flush();
+       return $this->redirectToRoute('recette');
     }
 }
