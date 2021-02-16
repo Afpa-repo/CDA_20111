@@ -189,6 +189,13 @@ class Membre implements UserInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
+     * @ORM\OneToMany(targetEntity="Commande", mappedBy="membre")
+     */
+    private $commande;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
      * @ORM\ManyToMany(targetEntity="Produit", mappedBy="membre")
      */
     private $produit;
@@ -440,6 +447,13 @@ class Membre implements UserInterface
     public function getRecette(): Collection
     {
         return $this->recette;
+    }
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommande(): Collection
+    {
+        return $this->commande;
     }
 
     public function addRecette(Recette $recette): self
