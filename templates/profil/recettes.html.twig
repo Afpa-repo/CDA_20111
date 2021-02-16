@@ -3,13 +3,27 @@
 {% block title 'Profil'%}
 
 {% block body %}
-    <h1>Vos recettes</h1>
-    <div class="col-10">
-        <ul>
-            {% for recette in app.user.recette %}
-                <li><a href="{{ path('show_recette', {'id':recette.id}) }}">{{ recette.nom }}</a></li>
-            {% endfor %}
-        </ul>
-
+    <div class="m-3 col-12 text-center">
+        <h1>Vos recettes</h1>
     </div>
+
+    <!-- Basic Card Example -->
+    <div class="card shadow m-3">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-dark">Recettes publiées</h6>
+        </div>
+        <div class="card-body">
+
+                {% for recette in app.user.recette %}
+                    <div>
+
+                        <a href="{{ path('show_recette', {'id':recette.id}) }}">{{ recette.nom }}</a><br>
+
+
+                    </div>
+                {% endfor %}
+
+        </div>
+    </div>
+
 {% endblock %}
