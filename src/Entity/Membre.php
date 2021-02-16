@@ -6,10 +6,12 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\MembreRepository;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
 
@@ -27,6 +29,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *     fields={"pseudo"},
  *     message= "Le nom d'utilisateur indiqué est déjà utilisé"
  * )
+ * @Vich\Uploadable
  */
 class Membre implements UserInterface
 {
@@ -130,6 +133,7 @@ class Membre implements UserInterface
      * @ORM\Column(name="photo", type="string", length=255, nullable=true)
      */
     private $photo;
+
 //" @Assert\Length(min=8, minMessage = "Votre mot de passe doit contenir un minimum de {{ limit }} caractéres")"
 // gére la longueur minimum du mdp et configure un message d'erreur
     /**
@@ -203,6 +207,32 @@ class Membre implements UserInterface
      */
     public $confirm_password;
 
+
+    /**
+     * @Vich\UploadableField(mapping="profil_image", fileNameProperty="photo")
+     * @var File
+     */
+    private $imageFile;
+
+    private $updatedAt;
+
+    public function setImageFile(File $photo = null)
+    {
+        $this->imageFile = $photo;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($photo) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
 
     /**
      * Constructor

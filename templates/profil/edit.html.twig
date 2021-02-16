@@ -1,20 +1,47 @@
 {% extends  'base.html.twig' %}
 
-{% block title 'Modification Profil'%}
+{% block title 'Modification Profil' %}
 {% block body %}
     <h1>Modification du profil</h1>
-{{ form_start(formProfil) }}
+    <form method="post" enctype="multipart/form-data">
+    {{ form_start(formProfil) }}
+    <div class="row">
+{#        <div class="col">#}
+{#            {{ form_row(formProfil.imageFile,{'label':"Avatar",'attr':{'placeholder':"fichier image de xxxtaille"}}) }}#}
+{#        </div>#}
+        <div class="col">
+            {{ form_row(formProfil.pseudo,{'label':"Nom d'utilisateur"}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_row(formProfil.nom,{'attr':{'placeholder':"Entrez votre nom"}}) }}
+        </div>
 
-    {{ form_row(formProfil.nom)}}
-    {{ form_row(formProfil.prenom)}}
-    {{ form_row(formProfil.tel)}}
-    {{ form_row(formProfil.ville) }}
-    {{ form_row(formProfil.adresse1) }}
-    {{ form_row(formProfil.email) }}
-    {{ form_row(formProfil.pseudo) }}
-
-<button type="submit" class="btn btn-success">Enregistrer</button>
-{{ form_end(formProfil) }}
-
+        <div class="col">
+            {{ form_row(formProfil.prenom,{'attr':{'placeholder':"Entrez votre prénomnom"}}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_row(formProfil.email,{'label':"E-mail"}) }}
+        </div>
+        <div class="col">
+            {{ form_row(formProfil.tel,{'label':"N° de téléphone",'attr':{'placeholder':"Entrez votre numéro de téléphone"}}) }}
+        </div>
+    </div>
+    {{ form_row(formProfil.adresse1,{'label':"Adresse",'attr':{'placeholder':"Entrez votre adresse"}}) }}
+    {{ form_row(formProfil.adresse2,{'label':"Complément d'adresse",'attr':{'placeholder':"N° d'appartement, lotissement, etc.."}}) }}
+    <div class="row">
+        <div class="col">
+            {{ form_row(formProfil.ville,{'attr':{'placeholder':"Entrez votre ville"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(formProfil.cp,{'label':"Code postal",'attr':{'placeholder':"Entrez un code postal à 5 chiffres"}}) }}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Enregistrer</button>
+    {{ form_end(formProfil) }}
+    </form>
 
 {% endblock %}

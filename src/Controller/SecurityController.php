@@ -32,7 +32,7 @@ class SecurityController extends AbstractController
 //encodage du mdp, UserPasswordEncoderInterface sert au hash du mdp et utilise l'encoder configuré dans security.yaml
             $hash = $encoder->encodePassword($membre, $membre->getMdp());
             $membre->setMDP($hash);
-$membre->setNiveau("1");
+            $membre->setNiveau("1");
 //            $manager envoie les données du formulaire vers la bdd
             $manager->persist($membre);
             $manager->flush();
