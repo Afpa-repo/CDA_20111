@@ -1,14 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-    <h1>inscription</h1>
-    {{  form_start(form) }}
-    {{ form_row(form.pseudo, {'label':"Nom d'utilisateur",'attr':{'placeholder': "Entre 3 et 20 caractéres"}}) }}
-    {{ form_row(form.email, {'label':"E-mail",'attr':{'placeholder':"Entrez une adresse mail valide"}}) }}
-    {{ form_row(form.mdp,{'label':"Mot de passe",'attr':{'placeholder':"Mot de passe contenant bla caractere et bla chiffre"}}) }}
-    {{ form_row(form.confirm_password,{'label':"Confirmez votre mot de passe"}) }}
-    <button type="submit" class="btn btn-success"> enregistrer</button>
-    {{ form_end(form) }}
-
+    <div class="row pt-4">
+        <div class="col">
+            <h2>inscription</h2>
+            {{ form_start(form) }}
+            {{ form_row(form.pseudo, {'label':"Nom d'utilisateur",'attr':{'placeholder': "Entre 3 et 20 caractéres"}}) }}
+            {{ form_row(form.email, {'label':"E-mail",'attr':{'placeholder':"Entrez une adresse mail valide"}}) }}
+            {{ form_row(form.mdp,{'label':"Mot de passe",'attr':{'placeholder':"Mot de passe contenant bla caractere et bla chiffre"}}) }}
+            {{ form_row(form.confirm_password,{'label':"Confirmez votre mot de passe"}) }}
+            <button type="submit" class="btn btn-success"> enregistrer</button>
+            {{ form_end(form) }}
+        </div>
+        <div class="col border-left">
+            <h2>Connexion</h2>
+            <form action="{{  path('security_login') }}" method="post">
+                <div class="form-group">
+                    <label for="_username">E-mail</label>
+                    <input placeholder="mail@exemple.com" required name="_username" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="_password">Mot de passe</label>
+                    <input placeholder="****" required name="_password" type="password" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-succes">Connexion</button>
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}
